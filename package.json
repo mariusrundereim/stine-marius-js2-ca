@@ -1,0 +1,28 @@
+{
+  "name": "marius_css_frameworks_ca",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "sass src/scss:dist/css",
+    "watch": "sass --watch src/scss:dist/css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mariusrundereim/marius_css_frameworks_ca.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mariusrundereim/marius_css_frameworks_ca/issues"
+  },
+  "homepage": "https://github.com/mariusrundereim/marius_css_frameworks_ca#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.1",
+    "bootstrap-icons": "^1.10.5"
+  },
+  "devDependencies": {
+    "sass": "^1.66.1"
+  }
+}

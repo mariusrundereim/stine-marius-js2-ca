@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="../dist/css/main.css" />
+    <script
+      defer
+      src="./../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+    ></script>
+  </head>
+  <body class="d-flex justify-content-between flex-column vh-100">
+    <div>
+      <header class="sticky-top bg-white shadow-sm p-2">
+        <div class="container">
+          <div class="d-flex justify-content-between gap-2 flex-wrap">
+            <div class="d-flex">
+              <a
+                href="/feed/index.html"
+                class="d-flex align-items-center link-body-emphasis text-decoration-none me-3"
+              >
+                <h2>Twist</h2>
+              </a>
+
+              <nav class="nav d-none d-sm-block">
+                <ul
+                  class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
+                >
+                  <li class="nav-item">
+                    <a
+                      href="/feed/index.html"
+                      class="nav-link px-2 link-secondary"
+                      >Feed</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      href="/profile/index.html"
+                      class="nav-link px-2 link-primary active"
+                      >Profile</a
+                    >
+                  </li>
+                </ul>
+              </nav>
+            </div>
+
+            <div class="d-flex flex-wrap gap-2 justify-content-between">
+              <form
+                class="col-8 col-lg-auto mb-3 mb-lg-0 me-lg-3"
+                role="search"
+              >
+                <input
+                  type="search"
+                  class="form-control"
+                  placeholder="Search..."
+                  aria-label="Search"
+                />
+              </form>
+
+              <div class="dropdown text-end">
+                <a
+                  href="#"
+                  class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <img
+                    src="https://github.com/mdo.png"
+                    alt="mdo"
+                    width="32"
+                    height="32"
+                    class="rounded-circle"
+                  />
+                </a>
+                <ul class="dropdown-menu text-small">
+                  <li>
+                    <a class="dropdown-item" href="/feed/index.html">Feed</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/profile/index.html"
+                      >Profile</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">Settings</a>
+                  </li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li>
+                    <a class="dropdown-item" href="/index.html">Sign out</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="container mt-2">
+        <section
+          class="d-flex flex-column align-content-center justify-content-center"
+        >
+          <div
+            class="mb-5 mb-lg-5 mx-auto d-flex flex-column align-content-center justify-content-center"
+          >
+            <img
+              src="/src/img/dummy_img_02.png"
+              alt="mdo"
+              width="92"
+              height="92"
+              class="rounded-circle"
+            />
+            <h2 class="text-center">username</h2>
+            <div>
+              <button type="button" class="btn btn-primary mt-5">Follow</button>
+              <button type="button" class="btn btn-primary mt-5">
+                Edit profile
+              </button>
+            </div>
+          </div>
+          <!--Followers Panel-->
+          <div
+            class="d-flex flex-row mx-auto border border-dark border-opacity-25 rounded flex-fill"
+          >
+            <div class="text-center p-2 border-end flex-fill">
+              <h3 class="fs-5">Following</h3>
+              <h4>3</h4>
+            </div>
+            <div class="text-center p-2 flex-fill">
+              <h3 class="fs-5">Followers</h3>
+              <h4>6</h4>
+            </div>
+            <div class="text-center p-2 border-start flex-fill">
+              <h3 class="fs-5">Posts</h3>
+              <h4>4</h4>
+            </div>
+          </div>
+        </section>
+        <!--My posts-->
+        <section>
+          <div
+            class="d-flex justify-content-between align-content-center mb-3 mt-3"
+          >
+            <h2 class="fs-4">My posts</h2>
+            <p>Edit</p>
+          </div>
+          <div class="container">
+            <div class="row gap-2">
+              <div class="col ratio ratio-1x1 bg-dark"></div>
+              <div class="col ratio ratio-1x1 bg-dark"></div>
+              <div class="col ratio ratio-1x1 bg-dark"></div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="container">
+      <div class="py-3 my-4">
+        <footer class="py-3 my-4">
+          <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item">
+              <a href="#" class="nav-link px-2 text-body-secondary">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link px-2 text-body-secondary">Features</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link px-2 text-body-secondary">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link px-2 text-body-secondary">FAQs</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link px-2 text-body-secondary">About</a>
+            </li>
+          </ul>
+          <p class="text-center text-body-secondary">© 2023 Company, Inc</p>
+        </footer>
+      </div>
+    </footer>
+  </body>
+</html>

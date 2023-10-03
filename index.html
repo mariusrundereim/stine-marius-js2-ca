@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Twist</title>
+    <link rel="stylesheet" href="./dist/css/main.css" />
+    <script
+      defer
+      src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+    ></script>
+  </head>
+  <body class="bg-primary">
+    <main class="container col d-sm-flex mt-5 gap-5 gap-sm-3">
+      <!-- Introduction -->
+      <section
+        class="col d-sm-flex flex-column p-2 border border-1 border-white rounded bg-white bg-opacity-10"
+      >
+        <div>
+          <h1>Twist</h1>
+        </div>
+
+        <div class="col">
+          <h2 class="display-6 fw-bold">
+            Discover a new way to socialize on our platform!
+          </h2>
+          <p>
+            Share images, thoughts, and make lasting memories with friends.
+            Whether it's a funny meme or a thoughtful quote, spark conversations
+            and even meet new friends. Sign up or log in to embark on this
+            exciting social adventure today!
+          </p>
+        </div>
+      </section>
+
+      <!-- Login panel-->
+      <section class="bg-white bg-opacity-75 p-4 rounded">
+        <!-- User Selection-->
+        <div class="d-flex gap-2 justify-content-center mb-4">
+          <input
+            type="radio"
+            class="btn-check"
+            name="options-outlined"
+            id="success-outlined"
+            autocomplete="off"
+            checked
+          />
+          <label class="btn btn-light flex-fill" for="success-outlined"
+            >Signup</label
+          >
+
+          <input
+            type="radio"
+            class="btn-check flex-fill"
+            name="options-outlined"
+            id="danger-outlined"
+            autocomplete="off"
+          />
+          <label class="btn btn-light flex-fill" for="danger-outlined"
+            >Login</label
+          >
+        </div>
+        <!-- Sign Up-->
+        <div>
+          <h2 class="fs-4">Sign Up</h2>
+          <form action="./profile/index.html" class="needs-validation p-2">
+            <div class="mb-3">
+              <label for="username">Username</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">@</span>
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="username"
+                  placeholder="Username"
+                  required=""
+                />
+                <div class="invalid-feedback" style="width: 100%">
+                  Your username is required.
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="email">Email </label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="you@example.com"
+              />
+              <div class="invalid-feedback">
+                Please enter a valid email address for shipping updates.
+              </div>
+            </div>
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="inputPassword"
+              class="form-control"
+              placeholder="Password"
+              required=""
+              minlength="8"
+            />
+            <input
+              type="password"
+              id="inputPassword"
+              class="form-control mt-2"
+              placeholder="Confirm password"
+              required=""
+              minlength="8"
+            />
+
+            <button class="btn btn-primary btn-block mt-3" type="submit">
+              Sign in
+            </button>
+          </form>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
