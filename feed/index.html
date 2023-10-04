@@ -149,7 +149,7 @@
                           <input
                             type="text"
                             class="w-100 border-0 text-wrap"
-                            placeholder="What you have in mind?"
+                            placeholder="Write content here"
                           />
                         </div>
                         <div class="col mb-3">
@@ -175,6 +175,7 @@
                         >
                           Close
                         </button>
+
                         <button type="button" class="btn btn-primary">
                           Send
                         </button>
@@ -227,22 +228,22 @@
                       class="d-flex align-content-center justify-content-center"
                     >
                       <!-- Edit post-->
-                      <div>
-                        <!-- Button trigger modal -->
+                      <div class="col">
+                        <!-- Button trigger modal Test -->
                         <button
                           type="button"
                           class="btn btn-outline-secondary w-100 text-center"
                           data-bs-toggle="modal"
-                          data-bs-target="#exampleModal"
+                          data-bs-target="#editPostModal"
                         >
-                          <h3 class="fs-6">Edit</h3>
+                          Edit
                         </button>
                         <!-- Modal -->
                         <div
                           class="modal fade"
-                          id="exampleModal"
+                          id="editPostModal"
                           tabindex="-1"
-                          aria-labelledby="exampleModalLabel"
+                          aria-labelledby="editPostModalLabel"
                           aria-hidden="true"
                         >
                           <div class="modal-dialog">
@@ -251,8 +252,8 @@
                                 <input
                                   type="text"
                                   class="modal-title fs-5 border-0"
-                                  placeholder="New post.."
-                                  id="exampleModalLabel"
+                                  placeholder="New post......."
+                                  id="editPostModalLabel"
                                 />
                                 <button
                                   type="button"
@@ -266,14 +267,14 @@
                                   <input
                                     type="text"
                                     class="w-100 border-0 text-wrap"
-                                    placeholder="What you have in mindsss?"
+                                    placeholder="Write content here"
                                   />
                                 </div>
                                 <div class="col mb-3">
                                   <input
                                     type="text"
                                     class="w-100 border-0 text-wrap"
-                                    placeholder="#hashtags"
+                                    placeholder="#hashtag"
                                   />
                                 </div>
 
@@ -287,14 +288,18 @@
                               <div class="modal-footer">
                                 <button
                                   type="button"
+                                  class="btn btn-outline-danger"
+                                >
+                                  Delete post
+                                </button>
+                                <button
+                                  type="button"
                                   class="btn btn-secondary"
                                   data-bs-dismiss="modal"
                                 >
                                   Close
                                 </button>
-                                <button type="button" class="btn btn-danger">
-                                  Delete
-                                </button>
+
                                 <button type="button" class="btn btn-primary">
                                   Send
                                 </button>
