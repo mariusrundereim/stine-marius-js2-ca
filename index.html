@@ -40,31 +40,31 @@
         <div class="d-flex gap-2 justify-content-center mb-4">
           <input
             type="radio"
-            class="btn-check"
+            class="btn-check sign-up-btn"
             name="options-outlined"
             id="success-outlined"
             autocomplete="off"
             checked
           />
           <label class="btn btn-light flex-fill" for="success-outlined"
-            >Signup</label
+            >Login</label
           >
 
           <input
             type="radio"
-            class="btn-check flex-fill"
+            class="btn-check flex-fill log-in-btn"
             name="options-outlined"
             id="danger-outlined"
             autocomplete="off"
           />
           <label class="btn btn-light flex-fill" for="danger-outlined"
-            >Login</label
+            >Signup</label
           >
         </div>
         <!-- Sign Up-->
-        <div>
+        <div class="d-none sign-up-box">
           <h2 class="fs-4">Sign Up</h2>
-          <form action="./profile/index.html" class="needs-validation p-2">
+          <form action="" class="needs-validation p-2">
             <div class="mb-3">
               <label for="username">Username</label>
               <div class="input-group">
@@ -74,9 +74,9 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="username"
+                  id="signup-username"
                   placeholder="Username"
-                  required=""
+                  required
                 />
                 <div class="invalid-feedback" style="width: 100%">
                   Your username is required.
@@ -88,6 +88,50 @@
               <input
                 type="email"
                 class="form-control"
+                id="signup-email"
+                placeholder="you@example.com"
+              />
+              <div class="invalid-feedback">
+                Please enter a valid email address for shipping updates.
+              </div>
+            </div>
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="signup-Password"
+              class="form-control"
+              placeholder="Password"
+              required
+              minlength="8"
+            />
+            <input
+              type="password"
+              id="signup-confirm-Password"
+              class="form-control mt-2"
+              placeholder="Confirm password"
+              required
+              minlength="8"
+            />
+
+            <button
+              class="btn btn-primary btn-block mt-3 sign-in-btn-1"
+              type="submit"
+            >
+              Sign in
+            </button>
+          </form>
+        </div>
+
+        <!-- log in -->
+
+        <div class="logg-in-box">
+          <h2 class="fs-4">Log In</h2>
+          <form action="" class="needs-validation p-2">
+            <div class="mb-3">
+              <label for="email">Email </label>
+              <input
+                type="signup-email"
+                class="form-control"
                 id="email"
                 placeholder="you@example.com"
               />
@@ -98,22 +142,17 @@
             <label for="password">Password</label>
             <input
               type="password"
-              id="inputPassword"
+              id="signup-confirm-Password"
               class="form-control"
               placeholder="Password"
-              required=""
-              minlength="8"
-            />
-            <input
-              type="password"
-              id="inputPassword"
-              class="form-control mt-2"
-              placeholder="Confirm password"
-              required=""
+              required
               minlength="8"
             />
 
-            <button class="btn btn-primary btn-block mt-3" type="submit">
+            <button
+              class="btn btn-primary btn-block mt-3 sign-in-btn-2"
+              type="submit"
+            >
               Sign in
             </button>
           </form>
