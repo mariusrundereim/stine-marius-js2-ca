@@ -126,13 +126,13 @@
 
         <div class="logg-in-box">
           <h2 class="fs-4">Log In</h2>
-          <form action="" class="needs-validation p-2">
+          <form action="" id="form-action" class="needs-validation p-2">
             <div class="mb-3">
               <label for="email">Email </label>
               <input
-                type="signup-email"
+                type="email"
                 class="form-control"
-                id="email"
+                id="signin-email"
                 placeholder="you@example.com"
               />
               <div class="invalid-feedback">
@@ -142,7 +142,7 @@
             <label for="password">Password</label>
             <input
               type="password"
-              id="signup-confirm-Password"
+              id="signin-confirm-Password"
               class="form-control"
               placeholder="Password"
               required

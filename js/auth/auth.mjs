@@ -6,13 +6,13 @@ const SignInBtn2 = document.querySelector(".sign-in-btn-2");
 const SignInBtn1 = document.querySelector(".sign-in-btn-1");
 
 signUpBtn.addEventListener("click", () => {
-  SignUpBox.classList.toggle("d-none");
-  LoggInBox.classList.toggle("d-none");
+  SignUpBox.classList.add("d-none");
+  LoggInBox.classList.remove("d-none");
 });
 
 logInBtn.addEventListener("click", () => {
-  SignUpBox.classList.toggle("d-none");
-  LoggInBox.classList.toggle("d-none");
+  SignUpBox.classList.remove("d-none");
+  LoggInBox.classList.add("d-none");
 });
 
 // login
@@ -22,7 +22,11 @@ import { baseURL } from "../env/env.mjs";
 const usernameInput = document.querySelector("#signup-username");
 const emailInput = document.querySelector("#signup-email");
 const confirmPasswordInput = document.querySelector("#signup-confirm-Password");
-
+const signinEmailInput = document.querySelector("#signin-email");
+const signinConfirmPasswordInput = document.querySelector(
+  "#signin-confirm-Password"
+);
+const formAction = document.querySelector("#form-action");
 console.log(baseURL);
 
 async function logIn() {
@@ -33,17 +37,21 @@ async function logIn() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: emailInput.value,
-        password: confirmPasswordInput.value,
+        email: signinEmailInput.value,
+        password: signinConfirmPasswordInput.value,
       }),
     });
-    console.log(emailInput.value);
-    console.log(confirmPasswordInput.value);
+    console.log(signinEmailInput.value);
+    console.log(signinConfirmPasswordInput.value);
     if (!response.ok) {
       throw new Error("Failed to fetch api. Status: " + response.status);
     }
     const result = await response.json();
     saveData(result);
+
+    console.log(formAction.action);
+    formAction.action = "../../profile/index.html";
+    formAction.submit();
 
     return result;
   } catch (error) {
@@ -85,20 +93,18 @@ async function signUp() {
   }
 }
 
-async function signIn() {
-  await signUp();
-  await logIn();
-}
-
 SignInBtn1.addEventListener("click", (e) => {
   e.preventDefault();
-  signIn();
+  signUp();
+  SignUpBox.classList.add("d-none");
+  LoggInBox.classList.remove("d-none");
 });
 SignInBtn2.addEventListener("click", (e) => {
   e.preventDefault();
+
   logIn();
 });
 
 export { signUpBtn, logInBtn };
 
-//localStorage.clear()
+//localStorage.clear();
