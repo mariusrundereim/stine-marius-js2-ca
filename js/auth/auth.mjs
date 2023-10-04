@@ -1,0 +1,1 @@
+export { signUpBtn, logInBtn };
