@@ -1,6 +1,8 @@
 import { baseURL } from "../env/env.mjs";
 
 const userName = "Mariusss";
+const userProfileAvatar =
+  "https://storage.googleapis.com/pai-images/e9368f6d615840e08283d93792063b08.jpeg";
 
 export async function getProfile() {
   try {
@@ -22,3 +24,7 @@ getProfile();
 
 const userTitle = document.querySelector("#usernameTitle");
 userTitle.textContent = userName;
+
+const userAvatar = (document.querySelector(
+  "#userAvatar"
+).src = `${userProfileAvatar}`);
