@@ -15,6 +15,7 @@
       src="./../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
     ></script>
     <script type="module" src="../js/script.mjs"></script>
+    <script type="module" src="../js/pages/feedPage/feed.mjs"></script>
   </head>
   <body class="d-flex justify-content-between flex-column vh-100">
     <div>
@@ -116,14 +117,14 @@
                   type="button"
                   class="btn btn-primary w-100 text-center"
                   data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"
+                  data-bs-target="#new-post-modal"
                 >
                   <h3 class="fs-6">New post</h3>
                 </button>
                 <!-- Modal -->
                 <div
                   class="modal fade"
-                  id="exampleModal"
+                  id="new-post-modal"
                   tabindex="-1"
                   aria-labelledby="exampleModalLabel"
                   aria-hidden="true"
@@ -149,6 +150,15 @@
                           <input
                             type="text"
                             class="w-100 border-0 text-wrap"
+                            id="new-post-title"
+                            placeholder="Title"
+                          />
+                        </div>
+                        <div class="col mb-3">
+                          <input
+                            type="text"
+                            class="w-100 border-0 text-wrap"
+                            id="new-post-text"
                             placeholder="Write content here"
                           />
                         </div>
@@ -156,6 +166,7 @@
                           <input
                             type="text"
                             class="w-100 border-0 text-wrap"
+                            id="new-post-tags"
                             placeholder="#hashtag"
                           />
                         </div>
@@ -164,7 +175,11 @@
                           <label for="upload" class="mb-2 fw-medium"
                             >Image</label
                           >
-                          <input type="text" placeholder="Insert URL" />
+                          <input
+                            type="text"
+                            id="new-post-img"
+                            placeholder="Insert URL"
+                          />
                         </div>
                       </div>
                       <div class="modal-footer">
@@ -176,7 +191,11 @@
                           Close
                         </button>
 
-                        <button type="button" class="btn btn-primary">
+                        <button
+                          type="button"
+                          class="btn btn-primary"
+                          id="send-new-post"
+                        >
                           Send
                         </button>
                       </div>
