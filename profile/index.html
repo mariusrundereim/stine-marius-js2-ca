@@ -105,13 +105,14 @@
             class="mb-5 mb-lg-5 mx-auto d-flex flex-column align-content-center justify-content-center"
           >
             <img
-              src="/src/img/dummy_img_02.png"
+              src="#"
               alt="mdo"
               width="92"
               height="92"
               class="rounded-circle"
+              id="userAvatar"
             />
-            <h2 class="text-center">username</h2>
+            <h2 class="text-center" id="usernameTitle">username</h2>
             <div>
               <button type="button" class="btn btn-primary mt-5">Follow</button>
               <button type="button" class="btn btn-primary mt-5">
@@ -125,15 +126,15 @@
           >
             <div class="text-center p-2 border-end flex-fill">
               <h3 class="fs-5">Following</h3>
-              <h4>3</h4>
+              <h4 id="profileCountFollowing">0</h4>
             </div>
             <div class="text-center p-2 flex-fill">
               <h3 class="fs-5">Followers</h3>
-              <h4>6</h4>
+              <h4 id="profileCountFollowers">0</h4>
             </div>
             <div class="text-center p-2 border-start flex-fill">
               <h3 class="fs-5">Posts</h3>
-              <h4>4</h4>
+              <h4 id="profileCountPosts">0</h4>
             </div>
           </div>
         </section>
@@ -146,11 +147,7 @@
             <p>Edit</p>
           </div>
           <div class="container">
-            <div class="row gap-2">
-              <div class="col ratio ratio-1x1 bg-dark"></div>
-              <div class="col ratio ratio-1x1 bg-dark"></div>
-              <div class="col ratio ratio-1x1 bg-dark"></div>
-            </div>
+            <div class="row row-cols-3" id="profilePosts"></div>
           </div>
         </section>
       </main>
