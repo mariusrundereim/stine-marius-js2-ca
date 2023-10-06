@@ -1,6 +1,6 @@
 import { baseURL } from "../env/env.mjs";
 
-const userName = "Mariusss";
+const userName = "stine137";
 const userProfileAvatar =
   "https://storage.googleapis.com/pai-images/e9368f6d615840e08283d93792063b08.jpeg";
 
@@ -92,11 +92,12 @@ function createProfilePosts(data) {
 
   data.forEach((post) => {
     const profilePost = document.createElement("div");
-    //profilePost.classList.add("profile-post");
+    profilePost.classList.add("col");
+    profilePost.classList.add("row");
 
     const profilePostImage = document.createElement("img");
-    //profilePostImage.classList("profile-post-image");
-    profilePostImage.src = post.image;
+    profilePostImage.classList.add("border");
+    profilePostImage.src = post.media;
 
     profilePost.appendChild(profilePostImage);
     profilePosts.appendChild(profilePost);
