@@ -1,3 +1,8 @@
-import { addLi } from "../../auth/auth.mjs";
+import { ListenerFunction } from "../../auth/auth.mjs";
 
-addLi();
+ListenerFunction();
+
+// console.log(window.location.href);
+// if (localStorage.getItem("jwt")) {
+//   window.location.href = "../.././feed/index.html";
+// }

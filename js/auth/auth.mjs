@@ -10,28 +10,28 @@ import {
 import { signUp } from "./signup.mjs";
 import { logIn } from "./login.mjs";
 
-function addLi() {
-  signUpBtn?.addEventListener("click", () => {
+function ListenerFunction() {
+  signUpBtn.addEventListener("click", () => {
     SignUpBox.classList.add("d-none");
     LoggInBox.classList.remove("d-none");
   });
 
-  logInBtn?.addEventListener("click", () => {
+  logInBtn.addEventListener("click", () => {
     SignUpBox.classList.remove("d-none");
     LoggInBox.classList.add("d-none");
   });
 
-  SignInBtn1?.addEventListener("click", (e) => {
+  SignInBtn1.addEventListener("click", (e) => {
     e.preventDefault();
 
     signUp();
   });
-  SignInBtn2?.addEventListener("click", (e) => {
+  SignInBtn2.addEventListener("click", (e) => {
     e.preventDefault();
 
     logIn();
   });
 }
-export { addLi };
+export { ListenerFunction };
 
 //localStorage.clear();
