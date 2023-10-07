@@ -19,8 +19,9 @@ export async function getProfile(userName) {
     if (!response.ok) {
       throw new Error(`Failed to fetch profile data: ${response.status}`);
     }
-    ProfileCount(result);
+
     const result = await response.json();
+    ProfileCount(result);
     console.log(result);
     return result;
   } catch (error) {
@@ -61,7 +62,6 @@ async function displayProfile(userName) {
     console.error("Error display profile:", error);
   }
 }
-
 displayProfile(userName);
 
 export async function getProfilePosts(userName) {
