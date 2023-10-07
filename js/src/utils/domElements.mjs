@@ -28,3 +28,8 @@ export const newPostText = document.querySelector("#new-post-text");
 export const newPostTags = document.querySelector("#new-post-tags");
 export const newPostImg = document.querySelector("#new-post-img");
 export const sendNewPost = document.querySelector("#send-new-post");
+
+// profile page
+
+export const defaultAvatarURL =
+  "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";

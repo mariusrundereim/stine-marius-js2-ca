@@ -1,8 +1,5 @@
 import { baseURL } from "../env/env.mjs";
-import { jwt, userName } from "../src/utils/domElements.mjs";
-
-const defaultAvatarURL =
-  "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
+import { jwt, userName, defaultAvatarURL } from "../src/utils/domElements.mjs";
 
 export async function getProfile(userName) {
   try {
