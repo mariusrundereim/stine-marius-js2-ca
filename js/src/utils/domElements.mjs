@@ -1,3 +1,4 @@
+export const jwt = localStorage.getItem("jwt");
 //auth page
 
 export const usernameInput = document.querySelector("#signup-username");
@@ -18,3 +19,11 @@ export const SignUpBox = document.querySelector(".sign-up-box");
 export const LoggInBox = document.querySelector(".logg-in-box");
 export const SignInBtn2 = document.querySelector(".sign-in-btn-2");
 export const SignInBtn1 = document.querySelector(".sign-in-btn-1");
+
+//feed page
+
+export const newPostTitle = document.querySelector("#new-post-title");
+export const newPostText = document.querySelector("#new-post-text");
+export const newPostTags = document.querySelector("#new-post-tags");
+export const newPostImg = document.querySelector("#new-post-img");
+export const sendNewPost = document.querySelector("#send-new-post");
