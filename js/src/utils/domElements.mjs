@@ -1,3 +1,4 @@
+export const jwt = localStorage.getItem("jwt");
 //auth page
 
 export const usernameInput = document.querySelector("#signup-username");

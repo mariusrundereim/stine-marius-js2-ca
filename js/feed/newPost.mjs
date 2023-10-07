@@ -4,13 +4,13 @@ import {
   newPostText,
   newPostTags,
   newPostImg,
-  sendNewPost,
+  jwt,
 } from "../src/utils/domElements.mjs";
 
 async function newPost() {
   try {
-    console.log(localStorage.getItem("jwt"));
-    const jwt = localStorage.getItem("jwt");
+    const splitTags = newPostTags.value.split(" ");
+    console.log(splitTags);
     const response = await fetch(`${baseURL}/posts`, {
       method: "POST",
       headers: {
@@ -20,7 +20,7 @@ async function newPost() {
       body: JSON.stringify({
         title: newPostTitle.value,
         body: newPostText.value,
-        tags: [newPostTags.value],
+        tags: splitTags,
         media: newPostImg.value,
       }),
     });
