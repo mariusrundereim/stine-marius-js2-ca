@@ -44,6 +44,7 @@ export function Header() {
                   class="form-control"
                   placeholder="Search..."
                   aria-label="Search"
+                  id="searchHeader"
                 />
               </form>
 
