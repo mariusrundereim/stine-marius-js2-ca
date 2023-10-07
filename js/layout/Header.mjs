@@ -50,6 +50,7 @@ export function Header() {
               <div class="dropdown text-end">
                 <a
                   href="#"
+                  id="head-drop-down"
                   class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
@@ -76,7 +77,7 @@ export function Header() {
                   </li>
                   <li><hr class="dropdown-divider" /></li>
                   <li>
-                    <a class="dropdown-item" href="/index.html">Sign out</a>
+                    <a class="dropdown-item" id="sign-out-btn" href="/index.html">Sign out</a>
                   </li>
                 </ul>
               </div>

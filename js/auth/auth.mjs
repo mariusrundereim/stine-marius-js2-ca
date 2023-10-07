@@ -33,5 +33,3 @@ function ListenerFunction() {
   });
 }
 export { ListenerFunction };
-
-//localStorage.clear();

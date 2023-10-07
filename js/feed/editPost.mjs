@@ -1,4 +1,11 @@
 import { baseURL } from "../env/env.mjs";
+import {
+  newPostTitle,
+  newPostText,
+  newPostTags,
+  newPostImg,
+  jwt,
+} from "../src/utils/domElements.mjs";
 
 async function editPost() {
   try {

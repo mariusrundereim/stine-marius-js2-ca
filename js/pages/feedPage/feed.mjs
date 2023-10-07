@@ -6,4 +6,9 @@ sendNewPost.addEventListener("click", () => {
   newPost();
 });
 
-getAllPosts();
+document.addEventListener("DOMContentLoaded", function () {
+  const editPostTitle = document.querySelector(".edit-post-title");
+  console.log(editPostTitle);
+  // Your code here, including the logic that uses the IDs
+  getAllPosts();
+});

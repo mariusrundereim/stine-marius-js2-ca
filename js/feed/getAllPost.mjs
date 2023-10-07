@@ -19,16 +19,20 @@ async function getAllPosts() {
     console.log(result);
 
     result.forEach((post) => {
-      //   if (userName === post.author.name) {
-      //     editProfileBtn.classList.remove("d-none");
-      //   }
+      // console.log(userName);
+      // console.log(post.author.name);
+      // if (userName === post.author.name) {
+      //   //editProfileBtn.classList.remove("d-none");
+      //   console.log(userName);
+      //   console.log(post.author.name);
+      // }
 
       feedAllPosts.innerHTML += `
       
       <div class="border border-dark border-opacity-25 rounded mb-4">
       <div class="col ratio ratio-1x1 bg-dark rounded-top">
       <img src="${post.media}" alt=""></div>
-      <div class="col bg-white p-2">
+      <div class="col bg-white p-2 >
         <!-- Post Image-->
         <div
           class="d-flex align-content-between justify-content-between"
@@ -56,7 +60,7 @@ async function getAllPosts() {
                 <button
                 id="edit-profile-btn"
                   type="button"
-                  class="btn btn-outline-secondary w-100 text-center d-none"
+                  class="btn btn-outline-secondary w-100 text-center "
                   data-bs-toggle="modal"
                   data-bs-target="#editPostModal"
                 >
@@ -67,7 +71,7 @@ async function getAllPosts() {
                   class="modal fade"
                   id="editPostModal"
                   tabindex="-1"
-                  aria-labelledby="editPostModalLabel"
+                  aria-labelledby="edit-post-title"
                   aria-hidden="true"
                 >
                   <div class="modal-dialog">
@@ -75,9 +79,9 @@ async function getAllPosts() {
                       <div class="modal-header">
                         <input
                           type="text"
-                          class="modal-title fs-5 border-0"
+                          class="modal-title fs-5 border-0 edit-post-title"
                           placeholder="New post......."
-                          id="editPostModalLabel"
+                          id="edit-post-title"
                         />
                         <button
                           type="button"
