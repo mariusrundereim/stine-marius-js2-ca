@@ -1,5 +1,14 @@
 import { baseURL } from "../env/env.mjs";
-import { jwt, userName, defaultAvatarURL } from "../src/utils/domElements.mjs";
+import {
+  jwt,
+  userName,
+  defaultAvatarURL,
+  avatarUrlValue,
+  changeAvatarBtn,
+  profileFollowing,
+  profileFollowers,
+  profilePosts,
+} from "../src/utils/domElements.mjs";
 
 export async function getProfile(userName) {
   try {
@@ -34,10 +43,6 @@ function displayProfileHeader(userName) {
 }
 
 function ProfileCount(result) {
-  const profileFollowing = document.querySelector("#profileCountFollowing");
-  const profileFollowers = document.querySelector("#profileCountFollowers");
-  const profilePosts = document.querySelector("#profileCountPosts");
-
   const profileNumberFollower = result._count.followers;
   const profileNumberFollowing = result._count.following;
   const profileNumberPosts = result._count.posts;
@@ -110,3 +115,42 @@ async function displayProfilePosts(userName) {
   }
 }
 displayProfilePosts(userName);
+
+changeAvatarBtn.addEventListener("click", async () => {
+  const newAvatarUrl = avatarUrlValue.value;
+  try {
+    const result = await changeProfileAvatar(userName, newAvatarUrl);
+    console.log("Avatar changed successfully:", result);
+    displayAvatar(result);
+  } catch (error) {
+    console.error("Error changing avatar:", error);
+  }
+});
+
+async function changeProfileAvatar(userName, newAvatarUrl) {
+  try {
+    const options = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${jwt}`,
+      },
+      body: JSON.stringify({ avatar: newAvatarUrl }),
+    };
+
+    const response = await fetch(
+      `${baseURL}/profiles/${userName}/media`,
+      options
+    );
+
+    if (!response.ok) {
+      throw new Error(`Failed to change avatar: ${response.status}`);
+    }
+
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error("Error changing avatar:", error);
+    throw error;
+  }
+}
