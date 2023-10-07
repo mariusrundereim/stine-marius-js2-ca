@@ -36,13 +36,12 @@ async function logIn() {
     }
 
     const result = await response.json();
+
     saveData(result);
 
     console.log(formAction.action);
     formAction.action = "../../profile/index.html";
     formAction.submit();
-
-    return result;
   } catch (error) {
     console.log(error);
   }
@@ -51,6 +50,7 @@ async function logIn() {
 function saveData(result) {
   let token = result.accessToken;
   localStorage.setItem("jwt", `Bearer ` + token);
+  localStorage.setItem("personUserName", result.name);
   console.log(result.accessToken);
 }
 
