@@ -1,8 +1,10 @@
 import { baseURL } from "../env/env.mjs";
 
-const userName = "stine137";
-const userProfileAvatar =
-  "https://storage.googleapis.com/pai-images/e9368f6d615840e08283d93792063b08.jpeg";
+const userName = "Mariusss";
+//const userName = "stine137"; // Username Stine
+
+const defaultAvatarURL =
+  "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
 
 export async function getProfile(userName) {
   try {
@@ -19,19 +21,22 @@ export async function getProfile(userName) {
     }
 
     const result = await response.json();
-    //console.log(result);
+    ProfileCount(result);
+    console.log(result);
     return result;
   } catch (error) {
     console.log(error);
   }
 }
 
-function ProfileHeader(userName, userProfileAvatar) {
+function displayAvatar(userName) {
+  const userAvatar = document.querySelector("#userAvatar");
+  userAvatar.src = userName.avatar || defaultAvatarURL;
+}
+
+function displayProfileHeader(userName) {
   const userTitle = document.querySelector("#usernameTitle");
   userTitle.textContent = userName;
-
-  const userAvatar = document.querySelector("#userAvatar");
-  userAvatar.src = userProfileAvatar;
 }
 
 function ProfileCount(result) {
@@ -48,17 +53,16 @@ function ProfileCount(result) {
   profilePosts.textContent = profileNumberPosts;
 }
 
-async function fetchProfile(userName) {
+async function displayProfile(userName) {
   try {
-    const result = await getProfile(userName);
-    console.log(result);
-    ProfileHeader(userName, userProfileAvatar);
-    ProfileCount(result);
+    const profileData = await getProfile(userName);
+    displayProfileHeader(userName);
+    displayAvatar(profileData);
   } catch (error) {
-    console.error("Failed to fetch profile data:", error);
+    console.error("Error display profile:", error);
   }
 }
-fetchProfile(userName);
+displayProfile(userName);
 
 export async function getProfilePosts(userName) {
   try {
