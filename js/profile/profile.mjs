@@ -1,6 +1,7 @@
 import { baseURL } from "../env/env.mjs";
+import { jwt, usernameInput } from "../src/utils/domElements.mjs";
 
-const userName = "Mariusss";
+const userName = usernameInput.value;
 //const userName = "stine137"; // Username Stine
 
 const defaultAvatarURL =
@@ -10,8 +11,7 @@ export async function getProfile(userName) {
   try {
     let options = {
       headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODE3LCJuYW1lIjoic3RpbmUxMzciLCJlbWFpbCI6InVzZXJAbm9yb2ZmLm5vIiwiYXZhdGFyIjpudWxsLCJiYW5uZXIiOm51bGwsImlhdCI6MTY5NTk4ODY4MH0.3D6BToOkDpEjCzW6YcXneHyOhG4e3Ihgj4zanNhPB-Q",
+        Authorization: `${jwt}`,
       },
     };
     const response = await fetch(`${baseURL}/profiles/${userName}`, options);
@@ -68,8 +68,7 @@ export async function getProfilePosts(userName) {
   try {
     let options = {
       headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODE3LCJuYW1lIjoic3RpbmUxMzciLCJlbWFpbCI6InVzZXJAbm9yb2ZmLm5vIiwiYXZhdGFyIjpudWxsLCJiYW5uZXIiOm51bGwsImlhdCI6MTY5NTk4ODY4MH0.3D6BToOkDpEjCzW6YcXneHyOhG4e3Ihgj4zanNhPB-Q",
+        Authorization: `${jwt}`,
       },
     };
     const result = await fetch(
