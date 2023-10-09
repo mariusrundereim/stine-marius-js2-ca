@@ -17,7 +17,7 @@ export function searchModal() {
                 type="text"
                 class="modal-title fs-5 border-0"
                 placeholder="Search here.."
-                id="searchModal"
+                id="search-input-modal"
               />
               <button
                 type="button"
@@ -32,11 +32,11 @@ export function searchModal() {
                   class="form-check-input"
                   type="radio"
                   name="exampleRadios"
-                  id="exampleRadios1"
+                  id="usernameRadio"
                   value="option1"
                   checked
                 />
-                <label class="form-check-label" for="exampleRadios1">
+                <label class="form-check-label" for="usernameRadio">
                   Username
                 </label>
               </div>
@@ -45,10 +45,10 @@ export function searchModal() {
                   class="form-check-input"
                   type="radio"
                   name="exampleRadios"
-                  id="exampleRadios2"
+                  id="hashtagRadio"
                   value="option2"
                 />
-                <label class="form-check-label" for="exampleRadios2">
+                <label class="form-check-label" for="hashtagRadio">
                   Hashtag
                 </label>
               </div>

@@ -43,3 +43,9 @@ export const profileFollowers = document.querySelector(
   "#profileCountFollowers"
 );
 export const profilePosts = document.querySelector("#profileCountPosts");
+
+// Search
+
+export const inputSearchTitle = document.querySelector("#search-input-modal");
+export const inputSelectionUsername = document.querySelector("#usernameRadio");
+export const inputSelectionHashtag = document.querySelector("#hashtagRadio");
