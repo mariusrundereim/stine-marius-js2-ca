@@ -34,7 +34,9 @@ export function Header() {
                   <li class="nav-item">
                     <a
                       href="#"
-                      class="nav-link px-2 link-secondary"
+                      class="text-center nav-link px-2 link-secondary"
+        data-bs-toggle="modal"
+        data-bs-target="#search-result-modal"
                       >Explore</a
                     >
                   </li>
