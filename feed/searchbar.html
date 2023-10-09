@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search bar</title>
+    <link rel="stylesheet" href="../dist/css/main.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+    <script
+      defer
+      src="./../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+    ></script>
+    <script type="module" src="../js/script.mjs"></script>
+    <script type="module" src="../js/pages/feedPage/feed.mjs"></script>
+  </head>
+  <body>
+    <div class="input-group">
+      <select class="form-select" id="country" required="">
+        <option value="">Select</option>
+        <option>Username</option>
+        <option>Hashtag</option>
+      </select>
+      <input
+        type="text"
+        class="form-control"
+        id="username"
+        placeholder="Search..."
+        required=""
+        class="btn btn-primary w-100 text-center"
+        data-bs-toggle="modal"
+        data-bs-target="#search-result-modal"
+      />
+    </div>
+    <!-- Modal Start-->
+    <!-- New post-->
+    <div class="col">
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="search-result-modal"
+        tabindex="-1"
+        aria-labelledby="search-result-modal-label"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <input
+                type="text"
+                class="modal-title fs-5 border-0"
+                placeholder="New post.."
+                id="search-result-modal-label"
+              />
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="col mb-3">
+                <input
+                  type="text"
+                  class="w-100 border-0 text-wrap"
+                  id="new-post-title"
+                  placeholder="Title"
+                />
+              </div>
+              <div class="col mb-3">
+                <input
+                  type="text"
+                  class="w-100 border-0 text-wrap"
+                  id="new-post-text"
+                  placeholder="Write content here"
+                />
+              </div>
+              <div class="col mb-3">
+                <input
+                  type="text"
+                  class="w-100 border-0 text-wrap"
+                  id="new-post-tags"
+                  placeholder="#hashtag"
+                />
+              </div>
+
+              <div class="d-flex flex-column">
+                <label for="upload" class="mb-2 fw-medium">Image</label>
+                <input type="text" id="new-post-img" placeholder="Insert URL" />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+
+              <button type="button" class="btn btn-primary" id="send-new-post">
+                Send
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Ends -->
+  </body>
+</html>
