@@ -1,5 +1,5 @@
-import { baseURL } from "../env/env.mjs";
-import { jwt, feedAllPosts } from "../src/utils/domElements.mjs";
+import { baseURL } from "../../env/env.mjs";
+import { jwt, feedAllPosts } from "../../src/utils/domElements.mjs";
 
 export function searchHeader() {
   const searchHeader = document.querySelector("#searchHeader");

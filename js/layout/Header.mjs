@@ -26,8 +26,16 @@ export function Header() {
                   <li class="nav-item">
                     <a
                       href="/profile/index.html"
-                      class="nav-link px-2 link-primary active"
+                      class="nav-link px-2 link-secondary"
                       >Profile</a
+                    >
+                  </li>
+                  
+                  <li class="nav-item">
+                    <a
+                      href="#"
+                      class="nav-link px-2 link-secondary"
+                      >Explore</a
                     >
                   </li>
                 </ul>

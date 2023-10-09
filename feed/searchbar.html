@@ -18,25 +18,16 @@
     <script type="module" src="../js/pages/feedPage/feed.mjs"></script>
   </head>
   <body>
-    <div class="input-group">
-      <select class="form-select" id="country" required="">
-        <option value="">Select</option>
-        <option>Username</option>
-        <option>Hashtag</option>
-      </select>
-      <input
-        type="text"
-        class="form-control"
-        id="username"
-        placeholder="Search..."
-        required=""
-        class="btn btn-primary w-100 text-center"
+    <div>
+      <h2
+        class="text-center"
         data-bs-toggle="modal"
         data-bs-target="#search-result-modal"
-      />
+      >
+        Explore
+      </h2>
     </div>
     <!-- Modal Start-->
-    <!-- New post-->
     <div class="col">
       <!-- Modal -->
       <div
@@ -52,8 +43,8 @@
               <input
                 type="text"
                 class="modal-title fs-5 border-0"
-                placeholder="New post.."
-                id="search-result-modal-label"
+                placeholder="Search here.."
+                id="searchModal"
               />
               <button
                 type="button"
@@ -63,34 +54,72 @@
               ></button>
             </div>
             <div class="modal-body">
-              <div class="col mb-3">
+              <div class="form-check">
                 <input
-                  type="text"
-                  class="w-100 border-0 text-wrap"
-                  id="new-post-title"
-                  placeholder="Title"
+                  class="form-check-input"
+                  type="radio"
+                  name="exampleRadios"
+                  id="exampleRadios1"
+                  value="option1"
+                  checked
                 />
+                <label class="form-check-label" for="exampleRadios1">
+                  Username
+                </label>
               </div>
-              <div class="col mb-3">
+              <div class="form-check">
                 <input
-                  type="text"
-                  class="w-100 border-0 text-wrap"
-                  id="new-post-text"
-                  placeholder="Write content here"
+                  class="form-check-input"
+                  type="radio"
+                  name="exampleRadios"
+                  id="exampleRadios2"
+                  value="option2"
                 />
+                <label class="form-check-label" for="exampleRadios2">
+                  Hashtag
+                </label>
               </div>
-              <div class="col mb-3">
-                <input
-                  type="text"
-                  class="w-100 border-0 text-wrap"
-                  id="new-post-tags"
-                  placeholder="#hashtag"
-                />
-              </div>
+              <div
+                class="col d-flex flex-wrap border border-1 border-secondary"
+              >
+                <!--Profile user tag-->
+                <p>
+                  <a
+                    href="#"
+                    class="d-block text-secondary text-decoration-none border border-1 border-secondary p-2 m-1 rounded"
+                    >Username1</a
+                  >
+                </p>
+                <p>
+                  <a
+                    href="#"
+                    class="d-block text-secondary text-decoration-none border border-1 border-secondary p-2 m-1 rounded"
+                    >Username2</a
+                  >
+                </p>
+                <p>
+                  <a
+                    href="#"
+                    class="d-block text-secondary text-decoration-none border border-1 border-secondary p-2 m-1 rounded"
+                    >Username3</a
+                  >
+                </p>
 
-              <div class="d-flex flex-column">
-                <label for="upload" class="mb-2 fw-medium">Image</label>
-                <input type="text" id="new-post-img" placeholder="Insert URL" />
+                <p>
+                  <a
+                    href="#"
+                    class="d-block text-secondary text-decoration-none border border-1 border-secondary p-2 m-1 rounded"
+                    >Username4</a
+                  >
+                </p>
+
+                <p>
+                  <a
+                    href="#"
+                    class="d-block text-secondary text-decoration-none border border-1 border-secondary p-2 m-1 rounded"
+                    >Username5</a
+                  >
+                </p>
               </div>
             </div>
             <div class="modal-footer">
