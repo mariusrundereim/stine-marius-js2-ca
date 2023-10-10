@@ -6,4 +6,4 @@ sendNewPost.addEventListener("click", () => {
   newPost();
 });
 
-getAllPosts();
+//getAllPosts();
