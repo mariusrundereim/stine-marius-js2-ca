@@ -29,7 +29,7 @@ async function getAllPosts() {
 
       feedAllPosts.innerHTML += `
       
-      <div class="border border-dark border-opacity-25 rounded mb-4">
+      <div id="tester" class="border border-dark border-opacity-25 rounded mb-4">
       <div class="col ratio ratio-1x1 bg-dark rounded-top">
       <img src="${post.media}" alt=""></div>
       <div class="col bg-white p-2 >
@@ -49,7 +49,7 @@ async function getAllPosts() {
                 height="32"
                 class="rounded-circle me-2"
               />
-              <h2 class="fs-5">${post.author.name}</h2>
+              <h2  class="fs-5">${post.author.name}</h2>
             </div>
             <div
               class="d-flex align-content-center justify-content-center"

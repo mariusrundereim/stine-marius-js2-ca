@@ -22,6 +22,7 @@ export const LoggInBox = document.querySelector(".logg-in-box");
 export const SignInBtn2 = document.querySelector(".sign-in-btn-2");
 export const SignInBtn1 = document.querySelector(".sign-in-btn-1");
 export const tester = document.querySelector("#tester");
+
 //feed page
 export const newPostTitle = document.querySelector("#new-post-title");
 export const newPostText = document.querySelector("#new-post-text");
@@ -29,7 +30,7 @@ export const newPostTags = document.querySelector("#new-post-tags");
 export const newPostImg = document.querySelector("#new-post-img");
 export const sendNewPost = document.querySelector("#send-new-post");
 export const feedAllPosts = document.querySelector("#feeds-all-posts");
-// export const editPostTitle = document.querySelector("#edit-post-title");
+export const editPostTitle = document.querySelector("#edit-post-title");
 
 // profile page
 
