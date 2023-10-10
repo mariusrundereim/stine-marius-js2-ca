@@ -138,7 +138,7 @@ async function getAllPosts() {
         </div>
 
         <!-- Post Content Body-->
-        <div>
+        <div class="text-break">
           <p>
 ${post.body}
           </p>
