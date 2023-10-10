@@ -28,6 +28,10 @@ export const newPostTags = document.querySelector("#new-post-tags");
 export const newPostImg = document.querySelector("#new-post-img");
 export const sendNewPost = document.querySelector("#send-new-post");
 export const feedAllPosts = document.querySelector("#feeds-all-posts");
+export const followingContainer = document.querySelector(
+  "#following-container"
+);
+export const followerContainer = document.querySelector("#follower-container");
 
 // profile page
 
