@@ -25,7 +25,7 @@ async function getAllPosts() {
 
       feedAllPosts.innerHTML += `
       
-      <div class="border border-dark border-opacity-25 rounded mb-4">
+      <div class="border border-dark border-opacity-25 rounded mb-4 tirsdag-test">
       <div class="col ratio ratio-1x1 bg-dark rounded-top">
       <img src="${post.media}" alt=""></div>
       <div class="col bg-white p-2">
