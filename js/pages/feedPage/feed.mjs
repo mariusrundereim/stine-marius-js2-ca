@@ -11,5 +11,5 @@ sendNewPost.addEventListener("click", () => {
 
 getFollowing();
 getAllPosts();
-getFollowersPosts();
+//getFollowersPosts();
 filterPostsFeed();
