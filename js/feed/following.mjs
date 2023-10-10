@@ -4,6 +4,7 @@ import {
   followingContainer,
   userName,
   followerContainer,
+  defaultAvatarURL,
 } from "../src/utils/domElements.mjs";
 
 async function getFollowing() {
@@ -28,12 +29,19 @@ async function getFollowing() {
     console.log(following);
 
     following.forEach((follower) => {
+      let avatar;
+
+      if (!follower.avatar) {
+        avatar = defaultAvatarURL;
+      } else {
+        avatar = follower.avatar;
+      }
       followingContainer.innerHTML += `
       <div
       class="list-group-item list-group-item-action d-flex py-2 gap-3"
     >
       <img
-        src="${follower.avatar}"
+        src="${avatar}"
         alt="twbs"
         width="32"
         height="32"
@@ -51,12 +59,19 @@ async function getFollowing() {
     });
 
     followers.forEach((follower) => {
+      let avatar;
+
+      if (!follower.avatar) {
+        avatar = defaultAvatarURL;
+      } else {
+        avatar = follower.avatar;
+      }
       followerContainer.innerHTML += `
       <div
       class="list-group-item list-group-item-action d-flex py-2 gap-3"
     >
       <img
-        src="${follower.avatar}"
+        src="${avatar}"
         alt="twbs"
         width="32"
         height="32"

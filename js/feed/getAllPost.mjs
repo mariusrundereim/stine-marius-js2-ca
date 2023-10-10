@@ -1,5 +1,10 @@
 import { baseURL } from "../env/env.mjs";
-import { jwt, feedAllPosts, userName } from "../src/utils/domElements.mjs";
+import {
+  jwt,
+  feedAllPosts,
+  userName,
+  defaultAvatarURL,
+} from "../src/utils/domElements.mjs";
 
 const editProfileBtn = document.querySelector("#edit-profile-btn");
 
@@ -19,13 +24,21 @@ async function getAllPosts() {
     console.log(result);
 
     result.forEach((post) => {
-      //   if (userName === post.author.name) {
-      //     editProfileBtn.classList.remove("d-none");
-      //   }
+      // if (userName === post.author.name) {
+      //   editProfileBtn.classList.remove("d-none");
+      // }
+
+      let avatar;
+
+      if (!post.author.avatar) {
+        avatar = defaultAvatarURL;
+      } else {
+        avatar = post.author.avatar;
+      }
 
       feedAllPosts.innerHTML += `
       
-      <div class="border border-dark border-opacity-25 rounded mb-4 tirsdag-test">
+      <div class="border border-dark border-opacity-25 rounded mb-4 ">
       <div class="col ratio ratio-1x1 bg-dark rounded-top">
       <img src="${post.media}" alt=""></div>
       <div class="col bg-white p-2">
@@ -39,7 +52,7 @@ async function getAllPosts() {
           >
             <div class="d-inline-flex">
               <img
-                src="${post.author.avatar}"
+                src="${avatar}"
                 alt="mdo"
                 width="32"
                 height="32"
