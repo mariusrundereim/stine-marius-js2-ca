@@ -1,10 +1,6 @@
 import { baseURL } from "../../env/env.mjs";
 import { jwt } from "../../src/utils/domElements.mjs";
 
-export function displaySelection(results) {
-  console.log("DOM", results);
-}
-
 export async function searchPostsByTag(tag) {
   try {
     const response = await fetch(`${baseURL}/posts?_tag=${tag}`);
@@ -32,7 +28,6 @@ export function searchTest() {
     if (selectedOption === "Hashtag" && searchValue) {
       const results = await searchPostsByTag(searchValue);
       console.log(results);
-      displaySelection(results);
     }
   });
 }
