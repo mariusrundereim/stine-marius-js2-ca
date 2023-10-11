@@ -7,5 +7,4 @@ const searchModalEle = searchModal();
 
 document.body.prepend(headerElement);
 document.body.prepend(searchModalEle);
-
 searchTest();
