@@ -8,3 +8,10 @@ const searchModalEle = searchModal();
 document.body.prepend(headerElement);
 document.body.prepend(searchModalEle);
 searchTest();
+
+const signOut = document.querySelector("#signOut");
+
+signOut.addEventListener("click", () => {
+  localStorage.clear();
+  window.location.href = "./feed.html";
+});
