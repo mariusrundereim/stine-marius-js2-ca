@@ -62,20 +62,23 @@ export function searchBar() {
   });
 }
 
-export function displayUsernames(username) {
+export function displayUsernames(username, avatar) {
   const displayContainer = document.querySelector("#searchResultContainer");
 
   if (username) {
+    displayContainer.innerHTML = "";
     const usernameTag = document.createElement("a");
     usernameTag.classList.add("border");
     usernameTag.classList.add("border-1");
     usernameTag.setAttribute("href", `/profile/${username}`);
 
+    const profileAvatar = document.createElement("img");
+    profileAvatar.src = avatar;
+
     const paragraph = document.createElement("p");
     paragraph.textContent = username;
     usernameTag.appendChild(paragraph);
 
-    displayContainer.innerHTML = "";
     displayContainer.appendChild(usernameTag);
   } else {
     displayContainer.innerHTML = "Username is not found";
