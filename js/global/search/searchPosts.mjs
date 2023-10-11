@@ -28,7 +28,12 @@ export async function searchPostsByUsername(username) {
       throw new Error("Network response was not ok");
     }
     const data = await response.json();
-    displayUsernames(data.name);
+    if (data.name) {
+      displayUsernames(data.name);
+    } else {
+      displayNotFoundMessage();
+    }
+
     return data;
   } catch (error) {
     console.error(error);
@@ -60,12 +65,19 @@ export function searchBar() {
 export function displayUsernames(username) {
   const displayContainer = document.querySelector("#searchResultContainer");
 
-  const usernameTag = document.createElement("div");
-  const paragraph = document.createElement("p");
+  if (username) {
+    const usernameTag = document.createElement("a");
+    usernameTag.classList.add("border");
+    usernameTag.classList.add("border-1");
+    usernameTag.setAttribute("href", `/profile/${username}`);
 
-  paragraph.textContent = username;
-  usernameTag.appendChild(paragraph);
-  displayContainer.appendChild(usernameTag);
+    const paragraph = document.createElement("p");
+    paragraph.textContent = username;
+    usernameTag.appendChild(paragraph);
 
-  console.log(displayContainer);
+    displayContainer.innerHTML = "";
+    displayContainer.appendChild(usernameTag);
+  } else {
+    displayContainer.innerHTML = "Username is not found";
+  }
 }
