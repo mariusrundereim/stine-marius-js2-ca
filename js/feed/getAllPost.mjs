@@ -5,8 +5,7 @@ import {
   userName,
   defaultAvatarURL,
 } from "../src/utils/domElements.mjs";
-
-const editProfileBtn = document.querySelector("#edit-profile-btn");
+import { editPost } from "./editPost.mjs";
 
 async function getAllPosts() {
   try {
@@ -24,9 +23,33 @@ async function getAllPosts() {
     console.log(result);
 
     result.forEach((post) => {
-      // if (userName === post.author.name) {
-      //   editProfileBtn.classList.remove("d-none");
-      // }
+      const authorName = post.author.name;
+
+      const editProfileBtns = document.querySelectorAll(
+        `.edit-profile-btn[data-author-name="${authorName}"]`
+      );
+
+      editProfileBtns.forEach((editProfileBtn) => {
+        if (userName === authorName) {
+          editProfileBtn.classList.remove("d-none");
+        }
+      });
+
+      const postImg = document.querySelectorAll(".post-img");
+      const postImgContainer = document.querySelectorAll(".post-img-container");
+
+      postImgContainer.forEach((container, index) => {
+        const post = result[index];
+
+        const mediaUrl = container
+          .querySelector(".post-img")
+          .getAttribute("src");
+
+        if (!mediaUrl) {
+          //console.log("no img");
+          container.classList.add("d-none");
+        }
+      });
 
       let avatar;
 
@@ -36,11 +59,24 @@ async function getAllPosts() {
         avatar = post.author.avatar;
       }
 
+      //const postId = post.id;
+      //console.log(postId);
+
+      const hearts = document.querySelectorAll(".bi-heart");
+
+      hearts.forEach((heart) => {
+        heart.addEventListener("click", (e) => {
+          e.preventDefault();
+          console.log("heart clicked");
+          // Add your logic here for what should happen when a heart is clicked
+        });
+      });
+
       feedAllPosts.innerHTML += `
       
-      <div  class="border border-dark border-opacity-25 rounded mb-4">
-      <div class="col ratio ratio-1x1 bg-dark rounded-top">
-      <img src="${post.media}" alt=""></div>
+      <div  class="border border-dark border-opacity-25 rounded mb-4 test">
+      <div  class="post-img-container col ratio ratio-1x1 bg-dark rounded-top">
+      <img class="post-img" src="${post.media}" alt=""></div>
       <div class="col bg-white p-2">
         <!-- Post Image-->
         <div
@@ -69,9 +105,10 @@ async function getAllPosts() {
                 <button
                 id="edit-profile-btn"
                   type="button"
-                  class="btn btn-outline-secondary w-100 text-center d-none"
+                  class="btn btn-outline-secondary w-100 text-center d-none edit-profile-btn"
                   data-bs-toggle="modal"
                   data-bs-target="#editPostModal"
+                  data-author-name="${post.author.name}"
                 >
                   Edit
                 </button>
@@ -152,6 +189,7 @@ async function getAllPosts() {
 
         <!-- Post Content Body-->
         <div class="text-break">
+        <h5>${post.title}</h3>
           <p>
 ${post.body}
           </p>

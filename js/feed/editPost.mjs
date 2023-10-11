@@ -40,3 +40,5 @@ async function editPost() {
     console.log(error);
   }
 }
+
+export { editPost };
