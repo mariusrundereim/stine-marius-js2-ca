@@ -47,3 +47,5 @@ export const profileFollowers = document.querySelector(
   "#profileCountFollowers"
 );
 export const profilePosts = document.querySelector("#profileCountPosts");
+
+// Search

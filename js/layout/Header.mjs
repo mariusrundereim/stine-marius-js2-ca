@@ -26,8 +26,18 @@ export function Header() {
                   <li class="nav-item">
                     <a
                       href="/profile/index.html"
-                      class="nav-link px-2 link-primary active"
+                      class="nav-link px-2 link-secondary"
                       >Profile</a
+                    >
+                  </li>
+                  
+                  <li class="nav-item">
+                    <a
+                      href="#"
+                      class="text-center nav-link px-2 link-secondary"
+        data-bs-toggle="modal"
+        data-bs-target="#search-result-modal"
+                      >Explore</a
                     >
                   </li>
                 </ul>
@@ -44,6 +54,7 @@ export function Header() {
                   class="form-control"
                   placeholder="Search..."
                   aria-label="Search"
+                  id="searchHeader"
                 />
               </form>
 
