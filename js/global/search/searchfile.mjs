@@ -53,46 +53,8 @@ export function searchModal() {
                 </label>
               </div>
               <div
-                class="col d-flex flex-wrap border border-1 border-secondary"
+                class="col d-flex flex-wrap border border-1 border-secondary" id="searchResultContainer"
               >
-                <!--Profile user tag-->
-                <p>
-                  <a
-                    href="#"
-                    class="d-block text-secondary text-decoration-none border border-1 border-secondary p-2 m-1 rounded"
-                    >Username1</a
-                  >
-                </p>
-                <p>
-                  <a
-                    href="#"
-                    class="d-block text-secondary text-decoration-none border border-1 border-secondary p-2 m-1 rounded"
-                    >Username2</a
-                  >
-                </p>
-                <p>
-                  <a
-                    href="#"
-                    class="d-block text-secondary text-decoration-none border border-1 border-secondary p-2 m-1 rounded"
-                    >Username3</a
-                  >
-                </p>
-
-                <p>
-                  <a
-                    href="#"
-                    class="d-block text-secondary text-decoration-none border border-1 border-secondary p-2 m-1 rounded"
-                    >Username4</a
-                  >
-                </p>
-
-                <p>
-                  <a
-                    href="#"
-                    class="d-block text-secondary text-decoration-none border border-1 border-secondary p-2 m-1 rounded"
-                    >Username5</a
-                  >
-                </p>
               </div>
             </div>
             <div class="modal-footer">

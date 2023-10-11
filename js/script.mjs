@@ -1,15 +1,22 @@
 import { Header } from "./layout/Header.mjs";
 import { searchModal } from "./global/search/searchfile.mjs";
-import { searchTest, searchPostsByTag } from "./global/search/searchPosts.mjs";
+import {
+  searchBar,
+  // searchPostsByTag,
+  searchPostsByUsername,
+  displayUsernames,
+} from "./global/search/searchPosts.mjs";
 
 const headerElement = Header();
 const searchModalEle = searchModal();
 
 document.body.prepend(headerElement);
 document.body.prepend(searchModalEle);
-searchTest();
+searchBar();
 //searchOptionTest();
-searchPostsByTag();
+// searchPostsByTag();
+searchPostsByUsername();
+displayUsernames();
 
 const signOut = document.querySelector("#signOut");
 
