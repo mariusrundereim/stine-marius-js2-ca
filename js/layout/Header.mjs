@@ -87,7 +87,7 @@ export function Header() {
                   </li>
                   <li><hr class="dropdown-divider" /></li>
                   <li>
-                    <a class="dropdown-item" href="/index.html">Sign out</a>
+                    <a class="dropdown-item" href="/index.html" id="signOut">Sign out</a>
                   </li>
                 </ul>
               </div>
