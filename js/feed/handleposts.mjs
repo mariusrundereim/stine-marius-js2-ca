@@ -22,5 +22,6 @@ export function filterPostsFeed() {
 }
 
 export function displayFilterSelected() {
-  //
+  const filterDisplay = document.querySelector("#filterdisplay");
+  filterDisplay.innerHTML = "";
 }
