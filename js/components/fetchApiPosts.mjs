@@ -13,7 +13,7 @@ export async function fetchAllPosts() {
       throw new Error("Network response was not ok");
     }
     const data = await response.json();
-    console.log(data);
+    console.log("My data", data);
     return data.posts;
   } catch (error) {
     console.error("Error fetching posts:", error);
