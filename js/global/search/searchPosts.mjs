@@ -1,20 +1,6 @@
 import { baseURL } from "../../env/env.mjs";
 import { jwt } from "../../src/utils/domElements.mjs";
 
-// export async function searchPostsByTag(tag) {
-//   try {
-//     const response = await fetch(`${baseURL}/posts?_tag=${tag}`);
-//     if (!response.ok) {
-//       throw new Error("Network response was not ok");
-//     }
-//     const data = await response.json();
-//     return data;
-//   } catch (error) {
-//     console.error("Error", error);
-//     return [];
-//   }
-// }
-
 export async function searchPostsByUsername(username) {
   try {
     const response = await fetch(`${baseURL}/profiles/${username}`, {
@@ -70,7 +56,7 @@ export function displayUsernames(username, avatar) {
     const usernameTag = document.createElement("a");
     usernameTag.classList.add("border");
     usernameTag.classList.add("border-1");
-    usernameTag.setAttribute("href", `/profile/${username}`);
+    usernameTag.setAttribute("href", `${baseURL}/profiles/${username}`);
 
     const profileAvatar = document.createElement("img");
     profileAvatar.src = avatar;
