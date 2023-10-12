@@ -1,4 +1,5 @@
 import { baseURL } from "../env/env.mjs";
+import { jwt } from "../src/utils/domElements.mjs";
 
 async function deletePost(postId) {
   try {

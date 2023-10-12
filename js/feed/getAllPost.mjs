@@ -82,15 +82,17 @@ async function getAllPosts() {
         myPost = true;
       }
 
-      //console.log(innerEdit(myPost));
-
       const editContent = innerEdit(myPost, postId);
+
+      //console.log(innerEdit(myPost));
 
       //console.log(editContent);
 
-      feedAllPosts.innerHTML += `
+      // <div  class="border border-dark border-opacity-25 rounded mb-4 test" >
+      const card = document.createElement("div");
+      card.innerHTML = `
       
-      <div  class="border border-dark border-opacity-25 rounded mb-4 test">
+      
       <div  class="post-img-container col ratio ratio-1x1 bg-dark rounded-top">
       <img class="post-img" src="${post.media}" alt=""></div>
       <div class="col bg-white p-2">
@@ -110,12 +112,12 @@ async function getAllPosts() {
                 height="32"
                 class="rounded-circle me-2"
               />
-              <h2 class="fs-5">${post.author.name}</h2>
+              <h2 class="fs-5">${post.author.name} ${post.id}</h2>
             </div>
             <div
               class="d-flex align-content-center justify-content-center"
             >
-            <div class=" col">${editContent}</div>
+
 
               <i class="bi bi-heart ps-2 pe-2"></i>
             </div>
@@ -147,8 +149,11 @@ ${post.body}
           </button>
         </div>
       </div>
-    </div>
     `;
+
+      card.append(editContent);
+
+      feedAllPosts.append(card);
     });
   } catch (error) {
     console.log(error);

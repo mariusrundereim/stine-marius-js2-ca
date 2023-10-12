@@ -1,22 +1,22 @@
 import { baseURL } from "../env/env.mjs";
-import { userName } from "../src/utils/domElements.mjs";
+import { userName, jwt } from "../src/utils/domElements.mjs";
 import { deletePost } from "./delete.mjs";
 
 async function editPost(
-  modalTitle,
+  modalEditTitle,
   modalContent,
   modalHashtag,
   modalImg,
   postId
 ) {
   try {
-    const newPostTitle = modalTitle.value;
+    const newPostTitle = modalEditTitle.value;
     const newPostText = modalContent.value;
     const newPostTags = modalHashtag.value;
     const newPostImg = modalImg.value;
     //
-    const splitTags = newPostTags.value.split(" ");
-    console.log(splitTags);
+    const splitTags = newPostTags.split(" ");
+    //console.log(splitTags);
     const response = await fetch(`${baseURL}/posts/${postId}`, {
       method: "PUT",
       headers: {
@@ -24,10 +24,10 @@ async function editPost(
         Authorization: `${jwt}`,
       },
       body: JSON.stringify({
-        title: newPostTitle.value,
-        body: newPostText.value,
+        title: newPostTitle,
+        body: newPostText,
         tags: splitTags,
-        media: newPostImg.value,
+        media: newPostImg,
       }),
     });
     if (!response.ok) {
@@ -41,7 +41,17 @@ async function editPost(
 }
 
 function innerEdit(myPost, postId) {
-  const editBtn = `
+  const containerEdit = document.createElement("div");
+  containerEdit.classList.add("col");
+  containerEdit.setAttribute("data-post-id", postId);
+  //console.log(postId);
+
+  if (!myPost) return containerEdit;
+
+  // const containerEdit = document.createElement("div");
+  // containerEdit.classList.add("col");
+
+  containerEdit.innerHTML += `
 
 
     <!-- Button trigger modal Test -->
@@ -51,13 +61,14 @@ function innerEdit(myPost, postId) {
       class="btn btn-outline-secondary w-100 text-center  edit-profile-btn"
       data-bs-toggle="modal"
       data-bs-target="#editPostModal"
+      data-post-id="${postId}"
 
     >
       Edit
     </button>
     <!-- Modal -->
     <div
-      class="is-open modal fade"
+      class=" modal fade"
       id="editPostModal"
       tabindex="-1"
       aria-labelledby="editPostModalLabel"
@@ -68,7 +79,7 @@ function innerEdit(myPost, postId) {
           <div class="modal-header">
             <input
               type="text"
-              class="modal-title fs-5 border-0"
+              class="modal-edit-title fs-5 border-0"
               placeholder="New post......."
               id="editPostModalLabel"
             />
@@ -126,15 +137,88 @@ function innerEdit(myPost, postId) {
     </div>
 `;
 
-  const modalTitle = document.querySelector(".modal-title");
+  const modalEditTitle = document.querySelector(".modal-edit-title");
   const modalContent = document.querySelector(".modal-content");
   const modalHashtag = document.querySelector(".modal-hashtag");
   const modalImg = document.querySelector(".modal-img");
-  const editSend = document.querySelector(".edit-send");
-  const deleteBtn = document.querySelector(".delete-btn");
+  const editSend = document.querySelectorAll(".edit-send");
+  const deleteBtn = document.querySelectorAll(".delete-btn");
+  console.log(deleteBtn);
+  containerEdit.addEventListener("click", () => {
+    console.log(postId);
+  });
+
+  return containerEdit;
+
+  //console.log(modalContent);
+
+  // editSend.forEach((send) => {
+  //   console.log(send);
+  //   send.addEventListener("click", () => {
+  //     console.log("noe");
+  //     //editPost(modalTitle, modalContent, modalHashtag, modalImg, postId);
+  //   });
+  // });
+
+  // Append the modal HTML to the document
+  // document.body.insertAdjacentHTML("beforeend", editBtn);
+
+  // //console.log(postId);
+
+  // // Add a click event listener to the document body
+  // document.body.addEventListener("click", (event) => {
+  //   // Check if the clicked element has the class "edit-send" or "delete-btn"
+  //   if (event.target.classList.contains("edit-send")) {
+  //     // Get the post ID from the data attribute
+  //     const clickedPostId = event.target.dataset.postId;
+  //     console.log(`Edit button clicked for post with ID: ${clickedPostId}`);
+  //     // You can call your editPost function here with the appropriate parameters
+  //   } else if (event.target.classList.contains("delete-btn")) {
+  //     // Handle delete button click
+  //   }
+  // });
+
+  ///////
+
+  // document.body.insertAdjacentHTML("beforeend", editBtn);
+
+  //let clickedPostId; // Declare the variable at a higher scope
+
+  // document.body.addEventListener("click", (event) => {
+  //   if (event.target.classList.contains("edit-profile-btn")) {
+  //     clickedPostId = event.target.dataset.postId;
+  //     console.log(`Edit button clicked for post with ID: ${clickedPostId}`);
+  //   }
+  //   // } else if (event.target.classList.contains("delete-btn") && clickedPostId === ) {
+  //   //   console.log(`Delete button clicked for post with ID: ${clickedPostId}`);
+  //   //   deletePost(clickedPostId);
+  //   // } else if (event.target.classList.contains("edit-send")) {
+  //   //   console.log(`Send button clicked for post with ID: ${clickedPostId}`);
+  //   //   editPost(
+  //   //     modalEditTitle,
+  //   //     modalContent,
+  //   //     modalHashtag,
+  //   //     modalImg,
+  //   //     clickedPostId
+  //   //   );
+  //   // }
+  // });
+  // document.body.addEventListener("click", (event) => {
+  //   if (event.target.classList.contains("edit-send")) {
+  //     const clickedPostId = event.target.dataset.postId;
+  //     console.log(`Edit button clicked for post with ID: ${clickedPostId}`);
+  //   } else if (event.target.classList.contains("delete-btn")) {
+  //     const clickedPostId = event.target.dataset.postId;
+  //     console.log(`Edit button clicked for post with ID: ${clickedPostId}`);
+  //   } else if (event.target.classList.contains("edit-profile-btn")) {
+  //     const clickedPostId = event.target.dataset.postId;
+  //     console.log(`Edit button clicked for post with ID: ${clickedPostId}`);
+  //   }
+  // });
+  ////////
 
   //console.log(postId);
-  // send.addEventListener("click", () => {
+  // editSend.addEventListener("click", () => {
   //   console.log("noe");
   //   editPost(modalTitle, modalContent, modalHashtag, modalImg, postId);
   // });
@@ -143,25 +227,19 @@ function innerEdit(myPost, postId) {
   //   deletePost(postId);
   // });
 
-  const editProfileBtns = document.querySelectorAll(".edit-profile-btn");
-  //console.log(editProfileBtns);
+  // const editProfileBtns = document.querySelectorAll(".edit-profile-btn");
+  // //console.log(editProfileBtns);
 
-  //
-  editProfileBtns.forEach((editProfileBtn) => {
-    //console.log(editProfileBtn);
-    editProfileBtn.addEventListener("click", () => {
-      console.log("noe");
-    });
-  });
-  //
-
-  // function edit() {
-  //   editSend.addEventListener("click", () => {
-  //     console.log("editing");
+  // //
+  // editProfileBtns.forEach((editProfileBtn) => {
+  //   //console.log(editProfileBtn);
+  //   editProfileBtn.addEventListener("click", () => {
+  //     console.log("noe");
   //   });
-  // }
+  // });
+  // //
 
-  return myPost ? editBtn : "";
+  // return myPost ? editBtn : "";
 }
 
 export { innerEdit };
