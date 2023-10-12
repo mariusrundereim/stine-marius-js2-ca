@@ -29,15 +29,10 @@ export async function searchPostsByUsername(username) {
 
 export function searchBar() {
   const inputSearchTitle = document.querySelector("#search-input-modal");
-  const inputSelectionUsername = document.querySelector("#usernameRadio");
 
   inputSearchTitle.addEventListener("keyup", async () => {
     const searchValue = inputSearchTitle.value;
-    const selectedOption = inputSelectionUsername.checked
-      ? "Username"
-      : "Hashtag";
-
-    if (selectedOption === "Username" && searchValue) {
+    if (searchValue) {
       const results = await searchPostsByUsername(searchValue);
       if (results !== null) {
         console.log("Username:", results);
@@ -56,7 +51,10 @@ export function displayUsernames(username, avatar) {
     const usernameTag = document.createElement("a");
     usernameTag.classList.add("border");
     usernameTag.classList.add("border-1");
-    usernameTag.setAttribute("href", `${baseURL}/profiles/${username}`);
+    usernameTag.setAttribute(
+      "href",
+      `${baseURL}/profile/index.html?name=${username}`
+    );
 
     const profileAvatar = document.createElement("img");
     profileAvatar.src = avatar;

@@ -13,12 +13,7 @@ export function searchModal() {
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <input
-                type="text"
-                class="modal-title fs-5 border-0"
-                placeholder="Search here.."
-                id="search-input-modal"
-              />
+              <h2 class="fs-5">Search profiles</h2>
               <button
                 type="button"
                 class="btn-close"
@@ -27,33 +22,15 @@ export function searchModal() {
               ></button>
             </div>
             <div class="modal-body">
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="exampleRadios"
-                  id="usernameRadio"
-                  value="option1"
-                  checked
-                />
-                <label class="form-check-label" for="usernameRadio">
-                  Username
-                </label>
-              </div>
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="exampleRadios"
-                  id="hashtagRadio"
-                  value="option2"
-                />
-                <label class="form-check-label" for="hashtagRadio">
-                  Hashtag
-                </label>
-              </div>
+            <input
+            type="text"
+            class="modal-title fs-5 border-0 w-100 mb-2"
+            placeholder="Search user.."
+            id="search-input-modal"
+          />
+              
               <div
-                class="col d-flex flex-wrap border border-1 border-secondary" id="searchResultContainer"
+                class="col d-flex flex-wrap border border-1 border-secondary rounded" id="searchResultContainer"
               >
               </div>
             </div>
@@ -66,9 +43,6 @@ export function searchModal() {
                 Close
               </button>
 
-              <button type="button" class="btn btn-primary" id="send-new-post">
-                Send
-              </button>
             </div>
           </div>
         </div>
