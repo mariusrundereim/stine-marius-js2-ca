@@ -5,16 +5,17 @@ import {
   searchPostsByUsername,
   displayUsernames,
 } from "./global/search/searchPosts.mjs";
-import { searchPosts } from "./components/searchHeaderPosts.mjs";
 
+//Header and Explore
 const headerElement = Header();
 const searchModalEle = searchModal();
-
 document.body.prepend(headerElement);
 document.body.prepend(searchModalEle);
+
+// Calling
 searchBar();
 searchPostsByUsername();
-displayUsernames();
+//displayUsernames();
 const signOut = document.querySelector("#signOut");
 
 signOut.addEventListener("click", () => {

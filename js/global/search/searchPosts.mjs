@@ -29,16 +29,28 @@ export async function searchPostsByUsername(username) {
 
 export function searchBar() {
   const inputSearchTitle = document.querySelector("#search-input-modal");
+  let timeout;
 
-  inputSearchTitle.addEventListener("keyup", async () => {
-    const searchValue = inputSearchTitle.value;
-    if (searchValue) {
-      const results = await searchPostsByUsername(searchValue);
-      if (results !== null) {
-        console.log("Username:", results);
-      } else {
-        console.log("No results found for the provided username.");
-      }
+  inputSearchTitle.addEventListener("keyup", () => {
+    clearTimeout(timeout); // Clear any previous timeouts
+
+    // Get the search value and trim it
+    const searchValue = inputSearchTitle.value.trim();
+
+    if (searchValue.length >= 3) {
+      // Adjust the minimum length as needed
+      // Set a new timeout to make the API call after 500 milliseconds of inactivity
+      timeout = setTimeout(async () => {
+        const results = await searchPostsByUsername(searchValue);
+        if (results !== null) {
+          console.log("Username:", results);
+        } else {
+          console.log("No results found for the provided username.");
+        }
+      }, 500); // You can adjust the delay (in milliseconds) as needed
+    } else {
+      // Handle the case where searchValue is too short or empty
+      console.log("Please enter at least 3 characters to search.");
     }
   });
 }
