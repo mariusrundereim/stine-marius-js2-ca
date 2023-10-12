@@ -5,6 +5,7 @@ import {
   searchPostsByUsername,
   displayUsernames,
 } from "./global/search/searchPosts.mjs";
+import { fetchAllPosts } from "./components/fetchApiPosts.mjs";
 
 //Header and Explore
 const headerElement = Header();
@@ -16,6 +17,11 @@ document.body.prepend(searchModalEle);
 searchBar();
 searchPostsByUsername();
 //displayUsernames();
+
+// Fetch Posts
+fetchAllPosts();
+
+// Sign out
 const signOut = document.querySelector("#signOut");
 
 signOut.addEventListener("click", () => {
