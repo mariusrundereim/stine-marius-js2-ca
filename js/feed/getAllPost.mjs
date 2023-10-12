@@ -21,7 +21,7 @@ async function getAllPosts() {
       throw new Error("Failed to get posts. Status: " + response.status);
     }
     const result = await response.json();
-    console.log(result);
+    //console.log(result);
 
     result.forEach((post) => {
       // if (userName === post.author.name) {

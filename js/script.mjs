@@ -2,10 +2,10 @@ import { Header } from "./layout/Header.mjs";
 import { searchModal } from "./global/search/searchfile.mjs";
 import {
   searchBar,
-  // searchPostsByTag,
   searchPostsByUsername,
   displayUsernames,
 } from "./global/search/searchPosts.mjs";
+import { searchPosts } from "./components/searchHeaderPosts.mjs";
 
 const headerElement = Header();
 const searchModalEle = searchModal();
@@ -13,11 +13,8 @@ const searchModalEle = searchModal();
 document.body.prepend(headerElement);
 document.body.prepend(searchModalEle);
 searchBar();
-//searchOptionTest();
-// searchPostsByTag();
 searchPostsByUsername();
 displayUsernames();
-
 const signOut = document.querySelector("#signOut");
 
 signOut.addEventListener("click", () => {

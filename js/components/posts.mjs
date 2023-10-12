@@ -1,4 +1,4 @@
-import { searchPosts } from "./searchPosts.mjs";
+import { searchPosts } from "./searchHeaderPosts.mjs";
 import { fetchAllPosts } from "./fetchPosts.mjs";
 import { fetchPostsPage, nextPage, prevPage } from "./pagination.mjs";
 import { searchBarHeader } from "../src/utils/domElements.mjs";
