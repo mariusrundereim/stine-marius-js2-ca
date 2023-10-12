@@ -5,7 +5,7 @@ import {
   userName,
   defaultAvatarURL,
 } from "../src/utils/domElements.mjs";
-import { editPost } from "./editPost.mjs";
+import { innerEdit } from "./editPost.mjs";
 
 async function getAllPosts() {
   try {
@@ -25,15 +25,17 @@ async function getAllPosts() {
     result.forEach((post) => {
       const authorName = post.author.name;
 
-      const editProfileBtns = document.querySelectorAll(
-        `.edit-profile-btn[data-author-name="${authorName}"]`
-      );
+      // const editProfileBtns = document.querySelectorAll(
+      //   `.edit-profile-btn[data-author-name="${authorName}"]`
+      // );
 
-      editProfileBtns.forEach((editProfileBtn) => {
-        if (userName === authorName) {
-          editProfileBtn.classList.remove("d-none");
-        }
-      });
+      // //console.log(editProfileBtns);
+
+      // editProfileBtns.forEach((editProfileBtn) => {
+      //   if (userName === authorName) {
+      //     editProfileBtn.classList.remove("d-none");
+      //   }
+      // });
 
       const postImg = document.querySelectorAll(".post-img");
       const postImgContainer = document.querySelectorAll(".post-img-container");
@@ -51,6 +53,8 @@ async function getAllPosts() {
         }
       });
 
+      // const editContainer = document.querySelectorAll(".edit-container");
+
       let avatar;
 
       if (!post.author.avatar) {
@@ -59,18 +63,30 @@ async function getAllPosts() {
         avatar = post.author.avatar;
       }
 
-      //const postId = post.id;
+      const postId = post.id;
       //console.log(postId);
 
-      const hearts = document.querySelectorAll(".bi-heart");
+      // const hearts = document.querySelectorAll(".bi-heart");
 
-      hearts.forEach((heart) => {
-        heart.addEventListener("click", (e) => {
-          e.preventDefault();
-          console.log("heart clicked");
-          // Add your logic here for what should happen when a heart is clicked
-        });
-      });
+      // hearts.forEach((heart) => {
+      //   heart.addEventListener("click", (e) => {
+      //     e.preventDefault();
+      //     console.log("heart clicked");
+      //     // Add your logic here for what should happen when a heart is clicked
+      //   });
+      // });
+
+      let myPost = false;
+
+      if (userName === authorName) {
+        myPost = true;
+      }
+
+      //console.log(innerEdit(myPost));
+
+      const editContent = innerEdit(myPost, postId);
+
+      //console.log(editContent);
 
       feedAllPosts.innerHTML += `
       
@@ -99,89 +115,8 @@ async function getAllPosts() {
             <div
               class="d-flex align-content-center justify-content-center"
             >
-              <!-- Edit post-->
-              <div class="col">
-                <!-- Button trigger modal Test -->
-                <button
-                id="edit-profile-btn"
-                  type="button"
-                  class="btn btn-outline-secondary w-100 text-center d-none edit-profile-btn"
-                  data-bs-toggle="modal"
-                  data-bs-target="#editPostModal"
-                  data-author-name="${post.author.name}"
-                >
-                  Edit
-                </button>
-                <!-- Modal -->
-                <div
-                  class="modal fade"
-                  id="editPostModal"
-                  tabindex="-1"
-                  aria-labelledby="editPostModalLabel"
-                  aria-hidden="true"
-                >
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <input
-                          type="text"
-                          class="modal-title fs-5 border-0"
-                          placeholder="New post......."
-                          id="editPostModalLabel"
-                        />
-                        <button
-                          type="button"
-                          class="btn-close"
-                          data-bs-dismiss="modal"
-                          aria-label="Close"
-                        ></button>
-                      </div>
-                      <div class="modal-body">
-                        <div class="col mb-3">
-                          <input
-                            type="text"
-                            class="w-100 border-0 text-wrap"
-                            placeholder="Write content here"
-                          />
-                        </div>
-                        <div class="col mb-3">
-                          <input
-                            type="text"
-                            class="w-100 border-0 text-wrap"
-                            placeholder="#hashtag"
-                          />
-                        </div>
+            <div class=" col">${editContent}</div>
 
-                        <div class="d-flex flex-column">
-                          <label for="upload" class="mb-2 fw-medium"
-                            >Image</label
-                          >
-                          <input type="text" placeholder="Insert URL" />
-                        </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button
-                          type="button"
-                          class="btn btn-outline-danger"
-                        >
-                          Delete post
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-secondary"
-                          data-bs-dismiss="modal"
-                        >
-                          Close
-                        </button>
-
-                        <button type="button" class="btn btn-primary">
-                          Send
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
               <i class="bi bi-heart ps-2 pe-2"></i>
             </div>
           </div>

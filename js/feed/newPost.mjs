@@ -28,19 +28,19 @@ async function newPost() {
       throw new Error("Failed to post. Status: " + response.status);
     }
 
-    if (
-      newPostTitle.value &&
-      newPostImg.value &&
-      newPostTags.value &&
-      newPostText.value
-    ) {
-      document.querySelector("#new-post-modal").classList.remove("show");
-      document.querySelector("body").classList.remove("modal-open");
-      const mdbackdrop = document.querySelector(".modal-backdrop");
-      mdbackdrop.classList.remove("modal-backdrop");
-    } else {
-      alert("Must fill all values");
-    }
+    // if (
+    //   newPostTitle.value &&
+    //   newPostImg.value &&
+    //   newPostTags.value &&
+    //   newPostText.value
+    // ) {
+    document.querySelector("#new-post-modal").classList.remove("show");
+    document.querySelector("body").classList.remove("modal-open");
+    const mdbackdrop = document.querySelector(".modal-backdrop");
+    mdbackdrop.classList.remove("modal-backdrop");
+    // } else {
+    //   alert("Must fill all values");
+    // }
 
     return response.json();
   } catch (error) {
