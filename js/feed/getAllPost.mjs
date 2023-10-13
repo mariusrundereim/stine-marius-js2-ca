@@ -5,8 +5,7 @@ import {
   userName,
   defaultAvatarURL,
 } from "../src/utils/domElements.mjs";
-
-const editProfileBtn = document.querySelector("#edit-profile-btn");
+import { innerEdit } from "./editPost.mjs";
 
 async function getAllPosts() {
   try {
@@ -24,9 +23,22 @@ async function getAllPosts() {
     console.log(result);
 
     result.forEach((post) => {
-      // if (userName === post.author.name) {
-      //   editProfileBtn.classList.remove("d-none");
-      // }
+      const authorName = post.author.name;
+
+      const postImg = document.querySelectorAll(".post-img");
+      const postImgContainer = document.querySelectorAll(".post-img-container");
+
+      postImgContainer.forEach((container, index) => {
+        const post = result[index];
+
+        const mediaUrl = container
+          .querySelector(".post-img")
+          .getAttribute("src");
+
+        if (!mediaUrl) {
+          container.classList.add("d-none");
+        }
+      });
 
       let avatar;
 
@@ -36,11 +48,40 @@ async function getAllPosts() {
         avatar = post.author.avatar;
       }
 
-      feedAllPosts.innerHTML += `
+      const postId = post.id;
+
+      // const hearts = document.querySelectorAll(".bi-heart");
+
+      // hearts.forEach((heart) => {
+      //   heart.addEventListener("click", (e) => {
+      //     e.preventDefault();
+      //     console.log("heart clicked");
+      //     // Add your logic here for what should happen when a heart is clicked
+      //   });
+      // });
+
+      let myPost = false;
+
+      if (userName === authorName) {
+        myPost = true;
+      }
+
+      const editContent = innerEdit(myPost, postId);
+
+      const card = document.createElement("div");
+      card.classList.add(
+        "border",
+        "border-dark",
+        "border-opacity-25",
+        "rounded",
+        "mb-4"
+      );
+
+      card.innerHTML = `
       
-      <div  class="border border-dark border-opacity-25 rounded mb-4">
-      <div class="col ratio ratio-1x1 bg-dark rounded-top">
-      <img src="${post.media}" alt=""></div>
+      
+      <div  class="post-img-container col ratio ratio-1x1 bg-dark rounded-top">
+      <img class="post-img" src="${post.media}" alt=""></div>
       <div class="col bg-white p-2">
         <!-- Post Image-->
         <div
@@ -58,93 +99,13 @@ async function getAllPosts() {
                 height="32"
                 class="rounded-circle me-2"
               />
-              <h2 class="fs-5">${post.author.name}</h2>
+              <h2 class="fs-5">${post.author.name} ${post.id}</h2>
             </div>
             <div
               class="d-flex align-content-center justify-content-center"
             >
-              <!-- Edit post-->
-              <div class="col">
-                <!-- Button trigger modal Test -->
-                <button
-                id="edit-profile-btn"
-                  type="button"
-                  class="btn btn-outline-secondary w-100 text-center d-none"
-                  data-bs-toggle="modal"
-                  data-bs-target="#editPostModal"
-                >
-                  Edit
-                </button>
-                <!-- Modal -->
-                <div
-                  class="modal fade"
-                  id="editPostModal"
-                  tabindex="-1"
-                  aria-labelledby="editPostModalLabel"
-                  aria-hidden="true"
-                >
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <input
-                          type="text"
-                          class="modal-title fs-5 border-0"
-                          placeholder="New post......."
-                          id="editPostModalLabel"
-                        />
-                        <button
-                          type="button"
-                          class="btn-close"
-                          data-bs-dismiss="modal"
-                          aria-label="Close"
-                        ></button>
-                      </div>
-                      <div class="modal-body">
-                        <div class="col mb-3">
-                          <input
-                            type="text"
-                            class="w-100 border-0 text-wrap"
-                            placeholder="Write content here"
-                          />
-                        </div>
-                        <div class="col mb-3">
-                          <input
-                            type="text"
-                            class="w-100 border-0 text-wrap"
-                            placeholder="#hashtag"
-                          />
-                        </div>
 
-                        <div class="d-flex flex-column">
-                          <label for="upload" class="mb-2 fw-medium"
-                            >Image</label
-                          >
-                          <input type="text" placeholder="Insert URL" />
-                        </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button
-                          type="button"
-                          class="btn btn-outline-danger"
-                        >
-                          Delete post
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-secondary"
-                          data-bs-dismiss="modal"
-                        >
-                          Close
-                        </button>
 
-                        <button type="button" class="btn btn-primary">
-                          Send
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
               <i class="bi bi-heart ps-2 pe-2"></i>
             </div>
           </div>
@@ -152,6 +113,7 @@ async function getAllPosts() {
 
         <!-- Post Content Body-->
         <div class="text-break">
+        <h5>${post.title}</h3>
           <p>
 ${post.body}
           </p>
@@ -174,8 +136,11 @@ ${post.body}
           </button>
         </div>
       </div>
-    </div>
     `;
+
+      card.append(editContent);
+
+      feedAllPosts.append(card);
     });
   } catch (error) {
     console.log(error);

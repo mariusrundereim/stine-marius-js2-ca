@@ -4,6 +4,8 @@ import {
   emailInput,
   confirmPasswordInput,
   passwordInput,
+  SignUpBox,
+  LoggInBox,
 } from "../src/utils/domElements.mjs";
 
 function passwordValidation() {
@@ -62,6 +64,9 @@ async function signUp() {
         }
       } else {
         const result = await response.json();
+
+        SignUpBox.classList.add("d-none");
+        LoggInBox.classList.remove("d-none");
 
         console.log(result);
         return result;
