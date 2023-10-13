@@ -1,6 +1,8 @@
 import { baseURL } from "../env/env.mjs";
 import { jwt, defaultAvatarURL } from "../src/utils/domElements.mjs";
 async function viewPost(postId) {
+  console.log(postId);
+
   try {
     const response = await fetch(`${baseURL}/posts/${postId}?_author=true`, {
       method: "GET",
@@ -22,10 +24,28 @@ async function viewPost(postId) {
       avatar = result.author.avatar;
     }
     //console.log(result);
+    const postOverlay = document.querySelector("#post-overlay");
+    postOverlay.classList.remove("d-none");
+    postOverlay.classList.add(
+      "d-flex",
+      "justify-content-center",
+      "align-items-center"
+    );
+
+    window.onclick = function (event) {
+      if (event.target === postOverlay) {
+        postOverlay.classList.add("d-none");
+      }
+    };
+
     const viewModalInner = document.createElement("div");
     viewModalInner.classList.add("modal-footer");
-    viewModalInner.innerHTML += `
-        <div class="post-img-container col ratio ratio-1x1 bg-dark rounded-top">
+    postOverlay.innerHTML = "";
+    postOverlay.innerHTML += `
+    <div class="m-5 d-flex flex-column">
+
+    
+        <div class="post-img-container-new col ratio ratio-1x1 bg-dark rounded-top">
         <img class="post-img" src="${result.media}" alt="">
       </div>
       <div class="col bg-white p-2">
@@ -56,7 +76,13 @@ async function viewPost(postId) {
             .join("")}</p>
         </div>
       </div>
+      </div>
         `;
+    if (!result.media) {
+      const viewImg = document.querySelector(".post-img-container-new");
+      console.log(viewImg);
+      viewImg.classList.add("d-none");
+    }
     return viewModalInner;
   } catch (error) {
     console.log(error);
