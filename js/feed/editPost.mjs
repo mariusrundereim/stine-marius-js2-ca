@@ -57,7 +57,7 @@ function innerEdit(myPost, postId) {
   containerEditModal.classList.add("modal-dialog");
   containerEditModal.innerHTML += `
 
-  <div class="modal-content">
+  <div class="modal-content edit-post-form">
     <div class="modal-header">
       <input
         type="text"
