@@ -47,6 +47,10 @@ function innerEdit(myPost, postId) {
   containerEdit.classList.add("col");
   containerEdit.setAttribute("data-post-id", postId);
 
+  // containerEdit.addEventListener("click", () => {
+  //   console.log(postId);
+  // });
+
   if (!myPost) return containerEdit;
 
   const containerEditModal = document.createElement("div");
