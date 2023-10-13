@@ -25,18 +25,6 @@ async function getAllPosts() {
     result.forEach((post) => {
       const authorName = post.author.name;
 
-      // const editProfileBtns = document.querySelectorAll(
-      //   `.edit-profile-btn[data-author-name="${authorName}"]`
-      // );
-
-      // //console.log(editProfileBtns);
-
-      // editProfileBtns.forEach((editProfileBtn) => {
-      //   if (userName === authorName) {
-      //     editProfileBtn.classList.remove("d-none");
-      //   }
-      // });
-
       const postImg = document.querySelectorAll(".post-img");
       const postImgContainer = document.querySelectorAll(".post-img-container");
 
@@ -48,12 +36,9 @@ async function getAllPosts() {
           .getAttribute("src");
 
         if (!mediaUrl) {
-          //console.log("no img");
           container.classList.add("d-none");
         }
       });
-
-      // const editContainer = document.querySelectorAll(".edit-container");
 
       let avatar;
 
@@ -64,7 +49,6 @@ async function getAllPosts() {
       }
 
       const postId = post.id;
-      //console.log(postId);
 
       // const hearts = document.querySelectorAll(".bi-heart");
 
@@ -84,12 +68,15 @@ async function getAllPosts() {
 
       const editContent = innerEdit(myPost, postId);
 
-      //console.log(innerEdit(myPost));
-
-      //console.log(editContent);
-
-      // <div  class="border border-dark border-opacity-25 rounded mb-4 test" >
       const card = document.createElement("div");
+      card.classList.add(
+        "border",
+        "border-dark",
+        "border-opacity-25",
+        "rounded",
+        "mb-4"
+      );
+
       card.innerHTML = `
       
       

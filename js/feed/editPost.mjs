@@ -1,22 +1,22 @@
 import { baseURL } from "../env/env.mjs";
-import { userName, jwt } from "../src/utils/domElements.mjs";
+import { jwt } from "../src/utils/domElements.mjs";
 import { deletePost } from "./delete.mjs";
 
 async function editPost(
   modalEditTitle,
-  modalContent,
+  modalBody,
   modalHashtag,
   modalImg,
   postId
 ) {
   try {
-    const newPostTitle = modalEditTitle.value;
-    const newPostText = modalContent.value;
-    const newPostTags = modalHashtag.value;
-    const newPostImg = modalImg.value;
-    //
-    const splitTags = newPostTags.split(" ");
-    //console.log(splitTags);
+    const newModalPostTitle = modalEditTitle.value;
+    const newModalPostText = modalBody.value;
+    const newModalPostTags = modalHashtag.value;
+    const newModalPostImg = modalImg.value;
+
+    const splitTags = newModalPostTags.split(" ");
+
     const response = await fetch(`${baseURL}/posts/${postId}`, {
       method: "PUT",
       headers: {
@@ -24,15 +24,17 @@ async function editPost(
         Authorization: `${jwt}`,
       },
       body: JSON.stringify({
-        title: newPostTitle,
-        body: newPostText,
+        title: newModalPostTitle,
+        body: newModalPostText,
         tags: splitTags,
-        media: newPostImg,
+        media: newModalPostImg,
       }),
     });
     if (!response.ok) {
       throw new Error("Failed to post. Status: " + response.status);
     }
+
+    location.reload();
 
     return response.json();
   } catch (error) {
@@ -44,7 +46,6 @@ function innerEdit(myPost, postId) {
   const containerEdit = document.createElement("div");
   containerEdit.classList.add("col");
   containerEdit.setAttribute("data-post-id", postId);
-  //console.log(postId);
 
   if (!myPost) return containerEdit;
 
@@ -67,11 +68,11 @@ function innerEdit(myPost, postId) {
         aria-label="Close"
       ></button>
     </div>
-    <div class="modal-body">
+    <div class="m-3">
       <div class="col mb-3">
         <input
           type="text"
-          class="modal-content w-100 border-0 text-wrap"
+          class="modal-body w-100 border-0 text-wrap"
           placeholder="Write content here"
         />
       </div>
@@ -142,22 +143,20 @@ function innerEdit(myPost, postId) {
 `;
 
   const modalEditTitle = containerEdit.querySelector(".modal-edit-title");
-  const modalContent = containerEdit.querySelector(".modal-content");
+  const modalBody = containerEdit.querySelector(".modal-body");
   const modalHashtag = containerEdit.querySelector(".modal-hashtag");
   const modalImg = containerEdit.querySelector(".modal-img");
   const editSend = containerEdit.querySelector(".edit-send");
   const deleteBtn = containerEdit.querySelector(".delete-btn");
-  // containerEdit.addEventListener("click", () => {
-  //   // console.log(postId);
-  // });
 
   console.log(containerEditModal);
+  console.log(modalBody);
 
   document.body.addEventListener("click", (event) => {
     if (event.target === editSend) {
       console.log(postId);
       console.log("send");
-      editPost(modalEditTitle, modalContent, modalHashtag, modalImg, postId);
+      editPost(modalEditTitle, modalBody, modalHashtag, modalImg, postId);
     } else if (event.target === deleteBtn) {
       console.log(postId);
       console.log("delete");
@@ -166,8 +165,6 @@ function innerEdit(myPost, postId) {
   });
 
   return containerEdit;
-
-  // return myPost ? editBtn : "";
 }
 
 export { innerEdit };

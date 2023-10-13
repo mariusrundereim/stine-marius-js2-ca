@@ -13,6 +13,8 @@ async function deletePost(postId) {
       throw new Error("Failed to post. Status: " + response.status);
     }
 
+    location.reload();
+
     return response.json();
   } catch (error) {
     console.log(error);
