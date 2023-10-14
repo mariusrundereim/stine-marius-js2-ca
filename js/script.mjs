@@ -29,17 +29,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 });
 
-// async function main() {
-//   try {
-//     const posts = await fetchAllPosts();
-//     const searchQuery = document.querySelector("#searchHeader").value;
-//     await searchMain(posts, searchQuery);
-//   } catch (error) {
-//     console.error("Error", error);
-//   }
-// }
-// main();
-// Fetch Posts
 fetchAllPosts();
 
 // Sign out
