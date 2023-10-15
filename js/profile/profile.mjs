@@ -25,7 +25,7 @@ export async function getProfile(userName) {
 
     const result = await response.json();
     ProfileCount(result);
-    console.log(result);
+
     return result;
   } catch (error) {
     console.log(error);
@@ -81,7 +81,6 @@ export async function getProfilePosts(userName) {
 
     const data = await result.json();
 
-    console.log(data);
     return data;
   } catch (error) {
     console.error("Error fetching profile posts:", error);
