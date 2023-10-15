@@ -1,7 +1,7 @@
 import { Header } from "./layout/Header.mjs";
-
 import { fetchAllPosts } from "./components/fetchApiPosts.mjs";
 import { searchMain } from "./feed/search.mjs";
+import { renderResults, createPostElement } from "./feed/getSearchPosts.mjs";
 
 //Header and Explore
 const headerElement = Header();
@@ -9,20 +9,26 @@ document.body.prepend(headerElement);
 
 document.addEventListener("DOMContentLoaded", async function () {
   try {
-    // Fetch and display all posts when the page initially loads
+    const searchQuery = new URLSearchParams(location.search).get("search");
     const posts = await fetchAllPosts();
-    if (posts && posts.length > 0) {
-      console.log("All Posts:", posts);
-    } else {
-      console.log("No posts available.");
+
+    const searchHeader = document.querySelector("#searchHeader");
+    if (searchQuery) {
+      searchHeader.value = searchQuery;
+      const searchResults = searchMain(posts, searchQuery);
+      console.log("Search results:", searchResults);
+      renderResults(searchResults); // Use the correct function name here
     }
 
-    // Add an event listener to the search input to console.log search results
-    const searchHeader = document.querySelector("#searchHeader");
     searchHeader.addEventListener("input", async (e) => {
       const searchQuery = searchHeader.value.trim().toLowerCase();
-      const searchResults = searchMain(posts, searchQuery); // Use searchMain to filter posts
+      const currentUrl = new URL(location.href);
+      currentUrl.searchParams.set("search", searchQuery);
+      history.pushState({}, "", currentUrl.href);
+
+      const searchResults = searchMain(posts, searchQuery);
       console.log("Search Results:", searchResults);
+      renderResults(searchResults); // Use the correct function name here
     });
   } catch (error) {
     console.error("Error", error);

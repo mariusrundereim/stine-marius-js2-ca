@@ -46,7 +46,7 @@ export function Header() {
 
             <div class="d-flex flex-wrap gap-2 justify-content-between">
               <form
-                class="col-8 col-lg-auto mb-3 mb-lg-0 me-lg-3"
+                class="col-8 col-lg-auto mb-3 mb-lg-0 me-lg-3" id="searchBarForm"
                 role="search"
               >
                 <input
