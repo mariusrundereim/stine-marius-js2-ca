@@ -16,7 +16,7 @@ async function logIn() {
       },
       body: JSON.stringify({
         email,
-        passwordgit,
+        password,
       }),
     });
     if (!response.ok) {
