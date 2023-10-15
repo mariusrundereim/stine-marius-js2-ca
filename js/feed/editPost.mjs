@@ -47,17 +47,13 @@ function innerEdit(myPost, postId) {
   containerEdit.classList.add("col");
   containerEdit.setAttribute("data-post-id", postId);
 
-  // containerEdit.addEventListener("click", () => {
-  //   console.log(postId);
-  // });
-
   if (!myPost) return containerEdit;
 
   const containerEditModal = document.createElement("div");
   containerEditModal.classList.add("modal-dialog");
   containerEditModal.innerHTML += `
 
-  <div class="modal-content edit-post-form">
+  <div class="modal-content">
     <div class="modal-header">
       <input
         type="text"
@@ -153,10 +149,17 @@ function innerEdit(myPost, postId) {
   const editSend = containerEdit.querySelector(".edit-send");
   const deleteBtn = containerEdit.querySelector(".delete-btn");
 
+  console.log(containerEditModal);
+  console.log(modalBody);
+
   document.body.addEventListener("click", (event) => {
     if (event.target === editSend) {
+      console.log(postId);
+      console.log("send");
       editPost(modalEditTitle, modalBody, modalHashtag, modalImg, postId);
     } else if (event.target === deleteBtn) {
+      console.log(postId);
+      console.log("delete");
       deletePost(postId);
     }
   });

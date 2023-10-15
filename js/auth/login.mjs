@@ -7,14 +7,16 @@ import {
 
 async function logIn() {
   try {
+    const { value: email } = signinEmailInput;
+    const { value: password } = signinConfirmPasswordInput;
     const response = await fetch(`${baseURL}/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: signinEmailInput.value,
-        password: signinConfirmPasswordInput.value,
+        email,
+        passwordgit,
       }),
     });
     if (!response.ok) {
