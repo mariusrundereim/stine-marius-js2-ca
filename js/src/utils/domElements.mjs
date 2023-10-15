@@ -49,3 +49,4 @@ export const profileFollowers = document.querySelector(
 export const profilePosts = document.querySelector("#profileCountPosts");
 
 // Search
+export const searchBarHeader = document.querySelector("#searchHeader");

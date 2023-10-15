@@ -20,7 +20,7 @@ async function getAllPosts() {
       throw new Error("Failed to get posts. Status: " + response.status);
     }
     const result = await response.json();
-    console.log(result);
+    //console.log(result);
 
     result.forEach(async (post) => {
       const authorName = post.author.name;
