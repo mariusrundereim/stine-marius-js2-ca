@@ -22,11 +22,9 @@ async function getFollowing() {
       throw new Error("Failed to get posts. Status: " + response.status);
     }
     const result = await response.json();
-    console.log(result);
 
     const following = result.following;
     const followers = result.followers;
-    console.log(following);
 
     following.forEach((follower) => {
       let avatar;
