@@ -9,6 +9,9 @@ import {
 
 async function newPost() {
   try {
+    const { value: title } = newPostTitle;
+    const { value: body } = newPostText;
+    const { value: media } = newPostImg;
     const splitTags = newPostTags.value.split(" ");
     console.log(splitTags);
     const response = await fetch(`${baseURL}/posts`, {
@@ -18,10 +21,10 @@ async function newPost() {
         Authorization: `${jwt}`,
       },
       body: JSON.stringify({
-        title: newPostTitle.value,
-        body: newPostText.value,
+        title,
+        body,
         tags: splitTags,
-        media: newPostImg.value,
+        media,
       }),
     });
     if (!response.ok) {

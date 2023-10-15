@@ -114,7 +114,7 @@ async function getAllPosts() {
 
           <!-- Post Comments-->
           <div class="d-flex m-0">
-            <button type="button" class="btn btn-secondary me-2 flex-fill" ">
+            <button type="button" class="btn btn-secondary me-2 flex-fill">
               Comment
             </button>
             <div class="modal fade" id="byIdModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
