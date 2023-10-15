@@ -13,14 +13,12 @@ export async function fetchAllPosts() {
       throw new Error("Network response was not ok");
     }
     const data = await response.json();
-    // data.forEach((post) => {
-    //   console.log(post.title);
-    //   return post.title;
-    // });
-    const postTitles = data.map((post) => post.title);
-    console.log(postTitles);
-    return postTitles;
-    //return data.posts;
+
+    // const postTitles = data.map((post) => post.title);
+    // console.log(postTitles);
+    // return postTitles;
+    console.log(data);
+    return data;
   } catch (error) {
     console.error("Error fetching posts:", error);
     return [];

@@ -1,7 +1,10 @@
 import { Header } from "./layout/Header.mjs";
 import { fetchAllPosts } from "./components/fetchApiPosts.mjs";
-import { searchMain } from "./feed/search.mjs";
-import { renderResults, createPostElement } from "./feed/getSearchPosts.mjs";
+import { searchMain } from "./components/search/search.mjs";
+import {
+  renderResults,
+  createPostElement,
+} from "./components/search/getSearchPosts.mjs";
 
 //Header and Explore
 const headerElement = Header();
