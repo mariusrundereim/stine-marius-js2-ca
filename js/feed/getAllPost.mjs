@@ -91,7 +91,7 @@ async function getAllPosts() {
             <div class="col d-flex align-content-between justify-content-between">
               <div class="d-inline-flex">
                 <img src="${avatar}" alt="mdo" width="32" height="32" class="rounded-circle me-2" />
-                <h2 class="fs-5">${post.author.name} ${post.id}</h2>
+                <h2 class="fs-5">${post.author.name}</h2>
               </div>
               <div class="d-flex align-content-center justify-content-center">
                 <i class="bi bi-heart ps-2 pe-2"></i>
