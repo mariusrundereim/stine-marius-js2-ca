@@ -2,16 +2,24 @@ import { baseURL } from "../env/env.mjs";
 import { jwt, defaultAvatarURL } from "../src/utils/domElements.mjs";
 import { createPostElement } from "../components/search/getSearchPosts.mjs";
 
-async function viewPost(postId) {
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+let postId = urlParams.get("id");
+viewPost();
+
+async function viewPost() {
   console.log(postId);
 
   try {
-    const response = await fetch(`${baseURL}/posts/${postId}?_author=true`, {
-      method: "GET",
-      headers: {
-        Authorization: `${jwt}`,
-      },
-    });
+    const response = await fetch(
+      `${baseURL}/posts/${postId}?_author=true&id=${postId}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `${jwt}`,
+        },
+      }
+    );
     if (!response.ok) {
       throw new Error("Failed to get posts. Status: " + response.status);
     }
@@ -26,7 +34,7 @@ async function viewPost(postId) {
       avatar = result.author.avatar;
     }
 
-    const postElement = createPostElement(result);
+    // const postElement = createPostElement(result);
 
     const postOverlay = document.querySelector("#post-overlay");
     postOverlay.classList.remove("d-none");
