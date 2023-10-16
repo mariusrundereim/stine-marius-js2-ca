@@ -26,7 +26,7 @@ export async function getProfile(userName) {
 
     const result = await response.json();
     ProfileCount(result);
-
+    console.log(result);
     return result;
   } catch (error) {
     console.log(error);
