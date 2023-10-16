@@ -3,8 +3,6 @@ import { jwt, defaultAvatarURL } from "../src/utils/domElements.mjs";
 import { createPostElement } from "../components/search/getSearchPosts.mjs";
 
 async function viewPost(postId) {
-  console.log(postId);
-
   try {
     const response = await fetch(`${baseURL}/posts/${postId}?_author=true`, {
       method: "GET",
@@ -25,8 +23,6 @@ async function viewPost(postId) {
     } else {
       avatar = result.author.avatar;
     }
-
-    const postElement = createPostElement(result);
 
     const postOverlay = document.querySelector("#post-overlay");
     postOverlay.classList.remove("d-none");
