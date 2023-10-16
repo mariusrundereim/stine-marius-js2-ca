@@ -93,9 +93,6 @@ async function getAllPosts() {
                 <img src="${avatar}" alt="mdo" width="32" height="32" class="rounded-circle me-2" />
                 <h2 class="fs-5">${post.author.name}</h2>
               </div>
-              <div class="d-flex align-content-center justify-content-center">
-                <i class="bi bi-heart ps-2 pe-2"></i>
-              </div>
             </div>
           </div>
 
@@ -112,24 +109,7 @@ async function getAllPosts() {
               .join("")}</p>
           </div>
 
-          <!-- Post Comments-->
-          <div class="d-flex m-0">
-            <button type="button" class="btn btn-secondary me-2 flex-fill">
-              Comment
-            </button>
-            <div class="modal fade" id="byIdModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog open-id-modal">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                  ${viewPostInner}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+         
         </div>
       `;
 
