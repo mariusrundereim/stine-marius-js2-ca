@@ -5,6 +5,7 @@ import { createPostElement } from "../components/search/getSearchPosts.mjs";
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 let postId = urlParams.get("id");
+
 viewPost();
 
 async function viewPost() {
