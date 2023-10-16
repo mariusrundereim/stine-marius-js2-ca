@@ -55,34 +55,33 @@ async function getAllPosts() {
 
       const editContent = innerEdit(myPost, postId);
 
-      const card = document.createElement("a");
+      const card = document.createElement("div");
       card.classList.add(
         "border",
         "border-dark",
         "border-opacity-25",
         "rounded",
-        "mb-4",
-        "text-decoration-none"
+        "mb-4"
       );
 
-      let viewPostInner = "";
+      // let viewPostInner = "";
 
-      card.addEventListener("click", async (e) => {
-        console.log(e.target);
-        if (
-          !e.target.classList.contains("edit-profile-btn") &&
-          !e.target.closest(".edit-profile-btn") &&
-          !e.target.classList.contains("edit-post-form") &&
-          !e.target.closest(".edit-post-form")
-        ) {
-          viewPostInner = await viewPost(postId);
-          console.log(viewPostInner);
-          console.log(postId);
-        }
-      });
-      card.setAttribute("href", `./post.html?id=${postId}`);
+      // card.addEventListener("click", async (e) => {
+      //   console.log(e.target);
+      //   if (
+      //     !e.target.classList.contains("edit-profile-btn") &&
+      //     !e.target.closest(".edit-profile-btn") &&
+      //     !e.target.classList.contains("edit-post-form") &&
+      //     !e.target.closest(".edit-post-form")
+      //   ) {
+      //     viewPostInner = await viewPost(postId);
+      //     console.log(viewPostInner);
+      //     console.log(postId);
+      //   }
+      // });
 
       card.innerHTML = `
+      <a href="./post.html?id=${postId}" class="text-decoration-none text-black ">
         <div class="post-innlegg post-img-container col ratio ratio-1x1 bg-dark rounded-top">
           <img class="post-img" src="${post.media}" alt="">
         </div>
@@ -93,7 +92,7 @@ async function getAllPosts() {
             <div class="col d-flex align-content-between justify-content-between">
               <div class="d-inline-flex">
                 <img src="${avatar}" alt="mdo" width="32" height="32" class="rounded-circle me-2" />
-                <h2 class="fs-5">${post.author.name}</h2>
+                <h2 class="fs-5 ">${post.author.name}</h2>
               </div>
             </div>
           </div>
