@@ -1,5 +1,7 @@
 import { baseURL } from "../env/env.mjs";
 import { jwt, defaultAvatarURL } from "../src/utils/domElements.mjs";
+import { createPostElement } from "../components/search/getSearchPosts.mjs";
+
 async function viewPost(postId) {
   console.log(postId);
 
@@ -23,7 +25,9 @@ async function viewPost(postId) {
     } else {
       avatar = result.author.avatar;
     }
-    //console.log(result);
+
+    const postElement = createPostElement(result);
+
     const postOverlay = document.querySelector("#post-overlay");
     postOverlay.classList.remove("d-none");
     postOverlay.classList.add(
@@ -44,7 +48,6 @@ async function viewPost(postId) {
     postOverlay.innerHTML += `
     <div class="m-5 d-flex flex-column">
 
-    
         <div class="post-img-container-new col ratio ratio-1x1 bg-dark rounded-top">
         <img class="post-img" src="${result.media}" alt="">
       </div>
@@ -83,6 +86,7 @@ async function viewPost(postId) {
       console.log(viewImg);
       viewImg.classList.add("d-none");
     }
+    postOverlay.appendChild(postElement);
     return viewModalInner;
   } catch (error) {
     console.log(error);

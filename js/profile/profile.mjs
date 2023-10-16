@@ -9,6 +9,7 @@ import {
   profileFollowers,
   profilePosts,
 } from "../src/utils/domElements.mjs";
+import { createPostElement } from "../components/search/getSearchPosts.mjs";
 
 export async function getProfile(userName) {
   try {
@@ -81,7 +82,7 @@ export async function getProfilePosts(userName) {
 
     const data = await result.json();
 
-    console.log(data);
+    console.log("Second", data);
     return data;
   } catch (error) {
     console.error("Error fetching profile posts:", error);
@@ -106,7 +107,6 @@ function createProfilePosts(data) {
     profilePosts.appendChild(profilePost);
   });
 }
-
 async function displayProfilePosts(userName) {
   try {
     const data = await getProfilePosts(userName);

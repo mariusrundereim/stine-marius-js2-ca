@@ -5,6 +5,8 @@ import {
   renderResults,
   createPostElement,
 } from "./components/search/getSearchPosts.mjs";
+import { getProfiles } from "./components/profiles/getProfiles.mjs";
+import { getUsersPosts } from "./components/profiles/getUsersPosts.mjs";
 
 //Header and Explore
 const headerElement = Header();
@@ -39,7 +41,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
 
 fetchAllPosts();
-
+getProfiles();
+getUsersPosts();
 // Sign out
 const signOut = document.querySelector("#signOut");
 
