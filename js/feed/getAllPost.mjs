@@ -61,7 +61,8 @@ async function getAllPosts() {
         "border-dark",
         "border-opacity-25",
         "rounded",
-        "mb-4"
+        "mb-4",
+        "text-decoration-none"
       );
 
       let viewPostInner = "";

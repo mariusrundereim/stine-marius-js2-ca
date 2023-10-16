@@ -2,7 +2,15 @@ import { baseURL } from "../env/env.mjs";
 import { jwt, defaultAvatarURL } from "../src/utils/domElements.mjs";
 import { createPostElement } from "../components/search/getSearchPosts.mjs";
 
-async function viewPost(postId) {
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+let postId = urlParams.get("id");
+
+viewPost();
+
+async function viewPost() {
+  console.log(postId);
+
   try {
     const response = await fetch(
       `${baseURL}/posts/${postId}?_author=true&id=${postId}`,
