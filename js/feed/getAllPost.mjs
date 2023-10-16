@@ -55,7 +55,7 @@ async function getAllPosts() {
 
       const editContent = innerEdit(myPost, postId);
 
-      const card = document.createElement("div");
+      const card = document.createElement("a");
       card.classList.add(
         "border",
         "border-dark",
@@ -79,6 +79,7 @@ async function getAllPosts() {
           console.log(postId);
         }
       });
+      card.setAttribute("href", `./post.html?id=${postId}`);
 
       card.innerHTML = `
         <div class="post-innlegg post-img-container col ratio ratio-1x1 bg-dark rounded-top">

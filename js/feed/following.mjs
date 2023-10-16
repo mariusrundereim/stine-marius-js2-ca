@@ -21,6 +21,7 @@ async function getFollowing() {
     if (!response.ok) {
       throw new Error("Failed to get posts. Status: " + response.status);
     }
+
     const result = await response.json();
 
     const following = result.following;

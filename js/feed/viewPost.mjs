@@ -4,12 +4,15 @@ import { createPostElement } from "../components/search/getSearchPosts.mjs";
 
 async function viewPost(postId) {
   try {
-    const response = await fetch(`${baseURL}/posts/${postId}?_author=true`, {
-      method: "GET",
-      headers: {
-        Authorization: `${jwt}`,
-      },
-    });
+    const response = await fetch(
+      `${baseURL}/posts/${postId}?_author=true&id=${postId}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `${jwt}`,
+        },
+      }
+    );
     if (!response.ok) {
       throw new Error("Failed to get posts. Status: " + response.status);
     }
