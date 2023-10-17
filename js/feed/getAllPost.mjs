@@ -6,7 +6,6 @@ import {
   defaultAvatarURL,
 } from "../src/utils/domElements.mjs";
 import { innerEdit } from "./editPost.mjs";
-import { viewPost } from "./viewPost.mjs";
 
 async function getAllPosts() {
   try {
@@ -20,7 +19,6 @@ async function getAllPosts() {
       throw new Error("Failed to get posts. Status: " + response.status);
     }
     const result = await response.json();
-    //console.log(result);
 
     result.forEach(async (post) => {
       const authorName = post.author.name;
@@ -64,26 +62,10 @@ async function getAllPosts() {
         "mb-4"
       );
 
-      // let viewPostInner = "";
-
-      // card.addEventListener("click", async (e) => {
-      //   console.log(e.target);
-      //   if (
-      //     !e.target.classList.contains("edit-profile-btn") &&
-      //     !e.target.closest(".edit-profile-btn") &&
-      //     !e.target.classList.contains("edit-post-form") &&
-      //     !e.target.closest(".edit-post-form")
-      //   ) {
-      //     viewPostInner = await viewPost(postId);
-      //     console.log(viewPostInner);
-      //     console.log(postId);
-      //   }
-      // });
-
       card.innerHTML = `
       <a href="./post.html?id=${postId}" class="text-decoration-none text-black ">
         <div class="post-innlegg post-img-container col ratio ratio-1x1 bg-dark rounded-top">
-          <img class="post-img" src="${post.media}" alt="">
+          <img class="post-img object-fit-cover" src="${post.media}" alt="">
         </div>
         <div class="col bg-white p-2">
           <!-- Post Image-->

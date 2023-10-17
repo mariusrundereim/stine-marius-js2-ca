@@ -1,6 +1,7 @@
 import { baseURL } from "../env/env.mjs";
 import { jwt, defaultAvatarURL } from "../src/utils/domElements.mjs";
-import { createPostElement } from "../components/search/getSearchPosts.mjs";
+
+import { reactHeart } from "./heart.mjs";
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -12,15 +13,12 @@ async function viewPost() {
   console.log(postId);
 
   try {
-    const response = await fetch(
-      `${baseURL}/posts/${postId}?_author=true&id=${postId}`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `${jwt}`,
-        },
-      }
-    );
+    const response = await fetch(`${baseURL}/posts/${postId}?_author=true`, {
+      method: "GET",
+      headers: {
+        Authorization: `${jwt}`,
+      },
+    });
     if (!response.ok) {
       throw new Error("Failed to get posts. Status: " + response.status);
     }
@@ -35,25 +33,25 @@ async function viewPost() {
       avatar = result.author.avatar;
     }
 
-    // const postElement = createPostElement(result);
-
     const postOverlay = document.querySelector("#post-overlay");
-    postOverlay.classList.remove("d-none");
+
     postOverlay.classList.add(
       "d-flex",
       "justify-content-center",
       "align-items-center"
     );
 
-    window.onclick = function (event) {
-      if (event.target === postOverlay) {
-        postOverlay.classList.add("d-none");
-      }
-    };
+    postOverlay.addEventListener("click", (e) => {
+      console.log("test");
 
-    const viewModalInner = document.createElement("div");
-    viewModalInner.classList.add("modal-footer");
-    postOverlay.innerHTML = "";
+      if (e.target.classList.contains("bi") && e.target.closest(".bi")) {
+        e.target.classList.add("bi-heart-fill");
+        e.target.classList.remove("bi-heart");
+
+        reactHeart(postId, postOverlay);
+      }
+    });
+
     postOverlay.innerHTML += `
     <div class="m-5 d-flex flex-column">
 
@@ -67,10 +65,11 @@ async function viewPost() {
           <div class="col d-flex align-content-between justify-content-between">
             <div class="d-inline-flex">
               <img src="${avatar}" alt="mdo" width="32" height="32" class="rounded-circle me-2" />
-              <h2 class="fs-5">${result.author.name} ${result.id}</h2>
+              <h2 class="fs-5">${result.author.name}</h2>
             </div>
             <div class="d-flex align-content-center justify-content-center">
               <i class="bi bi-heart ps-2 pe-2"></i>
+  
             </div>
           </div>
         </div>
@@ -95,8 +94,6 @@ async function viewPost() {
       console.log(viewImg);
       viewImg.classList.add("d-none");
     }
-    postOverlay.appendChild(postElement);
-    return viewModalInner;
   } catch (error) {
     console.log(error);
   }
