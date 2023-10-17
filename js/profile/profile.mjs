@@ -8,8 +8,19 @@ import {
   profileFollowing,
   profileFollowers,
   profilePosts,
+  otherUserName,
 } from "../src/utils/domElements.mjs";
 import { createPostElement } from "../components/search/getSearchPosts.mjs";
+
+const ref = window.location.href;
+console.log(ref);
+const userUrl = "http://127.0.0.1:5501/profile/index.html?user=";
+
+let currentUserName = userName;
+
+if (ref.startsWith(userUrl)) {
+  currentUserName = otherUserName;
+}
 
 export async function getProfile(userName) {
   try {
@@ -62,7 +73,7 @@ async function displayProfile(userName) {
     console.error("Error display profile:", error);
   }
 }
-displayProfile(userName);
+displayProfile(currentUserName);
 
 export async function getProfilePosts(userName) {
   try {
@@ -89,7 +100,7 @@ export async function getProfilePosts(userName) {
     throw error;
   }
 }
-getProfilePosts(userName);
+getProfilePosts(currentUserName);
 
 function createProfilePosts(data) {
   const profilePosts = document.querySelector("#profilePosts");
@@ -115,7 +126,7 @@ async function displayProfilePosts(userName) {
     console.error("Error fetching and display profile", error);
   }
 }
-displayProfilePosts(userName);
+displayProfilePosts(currentUserName);
 
 changeAvatarBtn.addEventListener("click", async () => {
   const newAvatarUrl = avatarUrlValue.value;
