@@ -2,6 +2,7 @@ import { baseURL } from "../env/env.mjs";
 import { jwt, defaultAvatarURL } from "../src/utils/domElements.mjs";
 
 import { reactHeart } from "./heart.mjs";
+//import { getProfile } from "../profile/profile.mjs";
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -9,7 +10,7 @@ let postId = urlParams.get("id");
 
 viewPost();
 
-async function viewPost() {
+export default async function viewPost() {
   console.log(postId);
 
   try {
@@ -42,8 +43,6 @@ async function viewPost() {
     );
 
     postOverlay.addEventListener("click", (e) => {
-      console.log("test");
-
       if (e.target.classList.contains("bi") && e.target.closest(".bi")) {
         e.target.classList.add("bi-heart-fill");
         e.target.classList.remove("bi-heart");
@@ -52,7 +51,20 @@ async function viewPost() {
       }
     });
 
+    postOverlay.addEventListener("click", (e) => {
+      if (
+        e.target.classList.contains("person") &&
+        e.target.closest(".person")
+      ) {
+        console.log(result.author.name);
+
+        localStorage.setItem("otherPersonUserName", result.author.name);
+        window.location.href = "/profile/index.html";
+      }
+    });
+
     postOverlay.innerHTML += `
+    
     <div class="m-5 d-flex flex-column">
 
         <div class="post-img-container-new col ratio ratio-1x1 bg-dark rounded-top">
@@ -63,10 +75,12 @@ async function viewPost() {
         <div class="d-flex align-content-between justify-content-between">
           <!-- Post header -->
           <div class="col d-flex align-content-between justify-content-between">
-            <div class="d-inline-flex">
-              <img src="${avatar}" alt="mdo" width="32" height="32" class="rounded-circle me-2" />
-              <h2 class="fs-5">${result.author.name}</h2>
-            </div>
+            <a href="/profile/index.html?user=${
+              result.author.name
+            }" class="d-inline-flex ">
+              <img src="${avatar}" alt="mdo" width="32" height="32" class="rounded-circle me-2 person" />
+              <h2 class="fs-5 person">${result.author.name}</h2>
+            </a>
             <div class="d-flex align-content-center justify-content-center">
               <i class="bi bi-heart ps-2 pe-2"></i>
   
@@ -98,5 +112,3 @@ async function viewPost() {
     console.log(error);
   }
 }
-
-export { viewPost };
