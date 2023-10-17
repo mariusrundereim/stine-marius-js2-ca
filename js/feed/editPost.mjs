@@ -2,7 +2,7 @@ import { baseURL } from "../env/env.mjs";
 import { jwt } from "../src/utils/domElements.mjs";
 import { deletePost } from "./delete.mjs";
 
-async function editPost(
+export async function editPost(
   modalEditTitle,
   modalBody,
   modalHashtag,

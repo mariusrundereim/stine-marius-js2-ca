@@ -1,4 +1,6 @@
 import { baseURL } from "../env/env.mjs";
+import { editPost } from "../feed/editPost.mjs";
+import viewPost from "../feed/viewPost.mjs";
 import {
   jwt,
   userName,
@@ -10,7 +12,6 @@ import {
   profilePosts,
   otherUserName,
 } from "../src/utils/domElements.mjs";
-import { createPostElement } from "../components/search/getSearchPosts.mjs";
 
 const ref = window.location.href;
 console.log(ref);
@@ -38,6 +39,7 @@ export async function getProfile(userName) {
     const result = await response.json();
     ProfileCount(result);
     console.log(result);
+
     return result;
   } catch (error) {
     console.log(error);
@@ -93,31 +95,41 @@ export async function getProfilePosts(userName) {
 
     const data = await result.json();
 
-    console.log("Second", data);
+    data.forEach((post) => {
+      console.log(post.id);
+      //console.log(viewPost);
+    });
     return data;
   } catch (error) {
     console.error("Error fetching profile posts:", error);
     throw error;
   }
 }
-getProfilePosts(currentUserName);
+//getProfilePosts(currentUserName);
 
 function createProfilePosts(data) {
   const profilePosts = document.querySelector("#profilePosts");
 
   data.forEach((post) => {
-    const profilePost = document.createElement("div");
-    profilePost.classList.add("col");
-    profilePost.classList.add("row");
+    const profilePost = document.createElement("a");
+    profilePost.setAttribute("href", "#");
+    profilePost.classList.add("col", "row");
 
     const profilePostImage = document.createElement("img");
-    profilePostImage.classList.add("border");
+    profilePostImage.classList.add(
+      "border",
+      "ratio",
+      "ratio-1x1",
+      "object-fit-cover"
+    );
+
     profilePostImage.src = post.media;
 
     profilePost.appendChild(profilePostImage);
     profilePosts.appendChild(profilePost);
   });
 }
+
 async function displayProfilePosts(userName) {
   try {
     const data = await getProfilePosts(userName);
