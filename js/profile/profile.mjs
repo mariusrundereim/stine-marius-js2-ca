@@ -13,7 +13,6 @@ import {
   followUser,
   unfollowUser,
 } from "../src/utils/domElements.mjs";
-import { createPostElement } from "../components/search/getSearchPosts.mjs";
 import { followAction } from "./follow-unfollow.mjs";
 
 async function getFollowing() {
