@@ -9,7 +9,59 @@ import {
   profileFollowers,
   profilePosts,
   otherUserName,
+  editProfileBtn,
+  followUser,
+  unfollowUser,
 } from "../src/utils/domElements.mjs";
+import { createPostElement } from "../components/search/getSearchPosts.mjs";
+import { followAction } from "./follow-unfollow.mjs";
+
+async function getFollowing() {
+  try {
+    const response = await fetch(
+      `${baseURL}/profiles/${otherUserName}?_followers=true&_following=true`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `${jwt}`,
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Failed to get posts. Status: " + response.status);
+    }
+
+    const result = await response.json();
+
+    const following = result.following;
+    const followers = result.followers;
+
+    console.log(followers);
+    console.log(followers.length);
+
+    if (followers.length === 0) {
+      followUser.classList.remove("d-none");
+    }
+
+    followers.forEach((follower) => {
+      console.log(follower);
+      console.log(follower.name);
+      let followerName = follower.name;
+      if (followerName.includes(userName)) {
+        console.log("contains username");
+
+        unfollowUser.classList.remove("d-none");
+      } else {
+        console.log("not following");
+        console.log("userName:", userName);
+        console.log("followerName:", followerName);
+        followUser.classList.remove("d-none");
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 const ref = window.location.href;
 const userUrl = "http://127.0.0.1:5501/profile/index.html?user=";
@@ -17,6 +69,11 @@ const userUrl = "http://127.0.0.1:5501/profile/index.html?user=";
 let currentUserName = userName;
 
 if (ref.startsWith(userUrl)) {
+  followAction();
+  console.log("is other user");
+  editProfileBtn.classList.add("d-none");
+  getFollowing();
+
   currentUserName = otherUserName;
 }
 

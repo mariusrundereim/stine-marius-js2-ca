@@ -31,7 +31,20 @@
             />
             <h2 class="text-center" id="usernameTitle">username</h2>
             <div>
-              <button type="button" class="btn btn-primary mt-5">Follow</button>
+              <button
+                type="button"
+                class="btn btn-primary mt-5 d-none"
+                id="followUser"
+              >
+                Follow
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary mt-5 d-none"
+                id="unfollowUser"
+              >
+                UnFollow
+              </button>
 
               <!-- Button trigger modal -->
               <button
@@ -39,6 +52,7 @@
                 class="btn btn-primary w-100 text-center"
                 data-bs-toggle="modal"
                 data-bs-target="#editProfileModal"
+                id="editProfileBtn"
               >
                 <h3 class="fs-6">Edit profile</h3>
               </button>
