@@ -1,6 +1,4 @@
 import { baseURL } from "../env/env.mjs";
-import { editPost } from "../feed/editPost.mjs";
-import viewPost from "../feed/viewPost.mjs";
 import {
   jwt,
   userName,
