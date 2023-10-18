@@ -107,7 +107,7 @@ export default async function viewPost() {
           <div class="col d-flex align-content-between justify-content-between">
             <a href="/profile/index.html?user=${
               result.author.name
-            }" class="d-inline-flex ">
+            }" class="d-inline-flex text-decoration-none text-primary">
               <img src="${avatar}" alt="mdo" width="32" height="32" class="rounded-circle me-2 person" />
               <h2 class="fs-5 person">${result.author.name}</h2>
             </a>
