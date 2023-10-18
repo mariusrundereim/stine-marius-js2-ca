@@ -95,7 +95,7 @@ export default async function viewPost() {
 
     postOverlay.innerHTML += `
     
-    <div class="m-5 d-flex flex-column">
+    <div class="m-5 d-flex flex-column border border-dark border-opacity-25 rounded">
 
         <div class="post-img-container-new col ratio ratio-1x1 bg-dark rounded-top">
         <img class="post-img" src="${result.media}" alt="">
@@ -134,6 +134,7 @@ export default async function viewPost() {
         <!-- comments-->
 
         <div>
+        <h6>Comments</h6>
         ${innerComment}
         </div>
       </div>
