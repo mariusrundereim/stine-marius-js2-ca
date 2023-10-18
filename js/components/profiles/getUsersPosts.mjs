@@ -12,5 +12,5 @@ export async function getUsersPosts() {
     }
   );
   const result = await response.json();
-  console.log("Users post", result);
+  //console.log("Users post", result);
 }

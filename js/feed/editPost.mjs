@@ -149,9 +149,6 @@ function innerEdit(myPost, postId) {
   const editSend = containerEdit.querySelector(".edit-send");
   const deleteBtn = containerEdit.querySelector(".delete-btn");
 
-  console.log(containerEditModal);
-  console.log(modalBody);
-
   document.body.addEventListener("click", (event) => {
     if (event.target === editSend) {
       console.log(postId);

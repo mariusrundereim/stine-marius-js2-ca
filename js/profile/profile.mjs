@@ -14,7 +14,6 @@ import {
 } from "../src/utils/domElements.mjs";
 
 const ref = window.location.href;
-console.log(ref);
 const userUrl = "http://127.0.0.1:5501/profile/index.html?user=";
 
 let currentUserName = userName;
@@ -38,7 +37,6 @@ export async function getProfile(userName) {
 
     const result = await response.json();
     ProfileCount(result);
-    console.log(result);
 
     return result;
   } catch (error) {
@@ -94,11 +92,6 @@ export async function getProfilePosts(userName) {
     }
 
     const data = await result.json();
-
-    data.forEach((post) => {
-      console.log(post.id);
-      //console.log(viewPost);
-    });
     return data;
   } catch (error) {
     console.error("Error fetching profile posts:", error);

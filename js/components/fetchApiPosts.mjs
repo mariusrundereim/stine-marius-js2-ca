@@ -17,7 +17,7 @@ export async function fetchAllPosts() {
     // const postTitles = data.map((post) => post.title);
     // console.log(postTitles);
     // return postTitles;
-    console.log("TEst", data);
+    //console.log("TEst", data);
 
     return data;
   } catch (error) {
