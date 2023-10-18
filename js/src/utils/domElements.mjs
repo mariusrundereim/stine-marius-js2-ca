@@ -40,7 +40,7 @@ export const defaultAvatarURL =
   "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
 export const avatarUrlValue = document.querySelector("#changeAvatarValue");
 export const changeAvatarBtn = document.querySelector("#changeAvatarBtn");
-
+export const editProfileBtn = document.querySelector("#editProfileBtn");
 export const profileFollowing = document.querySelector(
   "#profileCountFollowing"
 );
@@ -48,6 +48,8 @@ export const profileFollowers = document.querySelector(
   "#profileCountFollowers"
 );
 export const profilePosts = document.querySelector("#profileCountPosts");
+export const followUser = document.querySelector("#followUser");
+export const unfollowUser = document.querySelector("#unfollowUser");
 
 // Search
 export const searchBarHeader = document.querySelector("#searchHeader");
