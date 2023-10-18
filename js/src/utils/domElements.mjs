@@ -53,3 +53,8 @@ export const unfollowUser = document.querySelector("#unfollowUser");
 
 // Search
 export const searchBarHeader = document.querySelector("#searchHeader");
+
+// Comment
+
+export const commentSubmit = document.querySelector("#commentSubmit");
+export const commentInput = document.querySelector("#commentInput");

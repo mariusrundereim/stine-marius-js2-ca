@@ -1,7 +1,13 @@
 import { baseURL } from "../env/env.mjs";
-import { jwt, defaultAvatarURL } from "../src/utils/domElements.mjs";
+import {
+  jwt,
+  defaultAvatarURL,
+  commentSubmit,
+} from "../src/utils/domElements.mjs";
 
 import { reactHeart } from "./heart.mjs";
+
+import { newComment } from "./comment.mjs";
 //import { getProfile } from "../profile/profile.mjs";
 
 const queryString = window.location.search;
@@ -14,17 +20,28 @@ export default async function viewPost() {
   console.log(postId);
 
   try {
-    const response = await fetch(`${baseURL}/posts/${postId}?_author=true`, {
-      method: "GET",
-      headers: {
-        Authorization: `${jwt}`,
-      },
-    });
+    const response = await fetch(
+      `${baseURL}/posts/${postId}?_author=true&_comments=true`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `${jwt}`,
+        },
+      }
+    );
     if (!response.ok) {
       throw new Error("Failed to get posts. Status: " + response.status);
     }
     const result = await response.json();
     console.log(result);
+
+    commentSubmit.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      newComment(postId);
+    });
+
+    //
 
     let avatar;
 
@@ -63,6 +80,19 @@ export default async function viewPost() {
       }
     });
 
+    const allComments = result.comments;
+    console.log(allComments);
+
+    let innerComment = "";
+
+    allComments.forEach((comment) => {
+      console.log(comment.body);
+      console.log(comment);
+
+      // Concatenate each comment to innerComment
+      innerComment += `<p>${comment.body}</p>`;
+    });
+
     postOverlay.innerHTML += `
     
     <div class="m-5 d-flex flex-column">
@@ -99,6 +129,12 @@ export default async function viewPost() {
           <p class="pe-2 fw-medium">${result.tags
             .map((tag) => `<p class="pe-2 fw-medium">${tag}</p>`)
             .join("")}</p>
+        </div>
+
+        <!-- comments-->
+
+        <div>
+        ${innerComment}
         </div>
       </div>
       </div>
