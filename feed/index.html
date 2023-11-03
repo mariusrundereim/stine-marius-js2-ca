@@ -14,93 +14,15 @@
       defer
       src="./../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
     ></script>
+    <script type="module" src="../js/script.mjs"></script>
+    <script type="module" src="../js/pages/feedPage/feed.mjs"></script>
   </head>
   <body class="d-flex justify-content-between flex-column vh-100">
+    <div
+      id="post-overlay"
+      class="z-3 d-none position-fixed vw-100 vh-100 bg-black bg-opacity-25"
+    ></div>
     <div>
-      <header class="sticky-top bg-white shadow-sm p-2">
-        <div class="container">
-          <div class="d-flex justify-content-between gap-2 flex-wrap">
-            <div class="d-flex">
-              <a
-                href="/feed/index.html"
-                class="d-flex align-items-center link-body-emphasis text-decoration-none me-3"
-              >
-                <h2>Twist</h2>
-              </a>
-
-              <nav class="nav d-none d-sm-block">
-                <ul
-                  class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
-                >
-                  <li class="nav-item">
-                    <a
-                      href="/feed/index.html"
-                      class="nav-link px-2 link-primary active"
-                      >Feed</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a
-                      href="/profile/index.html"
-                      class="nav-link px-2 link-secondary"
-                      >Profile</a
-                    >
-                  </li>
-                </ul>
-              </nav>
-            </div>
-
-            <div class="d-flex flex-wrap gap-2 justify-content-between">
-              <form
-                class="col-8 col-lg-auto mb-3 mb-lg-0 me-lg-3"
-                role="search"
-              >
-                <input
-                  type="search"
-                  class="form-control"
-                  placeholder="Search..."
-                  aria-label="Search"
-                />
-              </form>
-
-              <div class="dropdown text-end">
-                <a
-                  href="#"
-                  class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <img
-                    src="https://github.com/mdo.png"
-                    alt="mdo"
-                    width="32"
-                    height="32"
-                    class="rounded-circle"
-                  />
-                </a>
-                <ul class="dropdown-menu text-small">
-                  <li>
-                    <a class="dropdown-item" href="/feed/index.html">Feed</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="/profile/index.html"
-                      >Profile</a
-                    >
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">Settings</a>
-                  </li>
-                  <li><hr class="dropdown-divider" /></li>
-                  <li>
-                    <a class="dropdown-item" href="/index.html">Sign out</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
-
       <main class="container mt-2">
         <div class="pt-3 pb-2">
           <h1 class="fs-3">Feed</h1>
@@ -113,16 +35,16 @@
                 <!-- Button trigger modal -->
                 <button
                   type="button"
-                  class="btn btn-primary w-100 text-center"
+                  class="btn btn-primary w-100 text-center fw-medium"
                   data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"
+                  data-bs-target="#new-post-modal"
                 >
-                  <h3 class="fs-6">New post</h3>
+                  New post
                 </button>
                 <!-- Modal -->
                 <div
                   class="modal fade"
-                  id="exampleModal"
+                  id="new-post-modal"
                   tabindex="-1"
                   aria-labelledby="exampleModalLabel"
                   aria-hidden="true"
@@ -134,7 +56,7 @@
                           type="text"
                           class="modal-title fs-5 border-0"
                           placeholder="New post.."
-                          id="exampleModalLabel"
+                          id="new-post-title"
                         />
                         <button
                           type="button"
@@ -148,7 +70,16 @@
                           <input
                             type="text"
                             class="w-100 border-0 text-wrap"
-                            placeholder="What you have in mind?"
+                            id="new-post-text"
+                            placeholder="Write content here"
+                          />
+                        </div>
+                        <div class="col mb-3">
+                          <input
+                            type="text"
+                            class="w-100 border-0 text-wrap"
+                            id="new-post-tags"
+                            placeholder="#hashtag"
                           />
                         </div>
 
@@ -156,7 +87,11 @@
                           <label for="upload" class="mb-2 fw-medium"
                             >Image</label
                           >
-                          <input type="text" placeholder="Insert URL" />
+                          <input
+                            type="text"
+                            id="new-post-img"
+                            placeholder="Insert URL"
+                          />
                         </div>
                       </div>
                       <div class="modal-footer">
@@ -167,7 +102,12 @@
                         >
                           Close
                         </button>
-                        <button type="button" class="btn btn-primary">
+
+                        <button
+                          type="button"
+                          class="btn btn-primary"
+                          id="send-new-post"
+                        >
                           Send
                         </button>
                       </div>
@@ -175,211 +115,42 @@
                   </div>
                 </div>
               </div>
-              <!-- Sort-->
+              <!-- Filter-->
               <div class="col col-md-3">
                 <button
-                  class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split d-flex justify-content-between align-items-center link-body-emphasis w-100"
+                  class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split d-flex justify-content-between align-items-center link-body-emphasis w-100 fw-medium"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <h3 class="fs-6">Sort</h3>
+                  Filter
                 </button>
 
-                <ul class="dropdown-menu text-small">
-                  <li><a class="dropdown-item" href="#">Trending</a></li>
-                  <li><a class="dropdown-item" href="#">Latest</a></li>
+                <ul class="dropdown-menu text-small" id="filter-drop-menu">
+                  <li>
+                    <a class="dropdown-item" href="#" data-option="allUsers"
+                      >All users</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#" data-option="following"
+                      >Following</a
+                    >
+                  </li>
                 </ul>
               </div>
             </div>
 
             <!-- Content Feed-->
-            <!-- Example post 1-->
-            <div class="border border-dark border-opacity-25 rounded mb-4">
-              <div class="col ratio ratio-1x1 bg-dark rounded-top"></div>
-              <div class="col bg-white p-2">
-                <div
-                  class="d-flex align-content-between justify-content-between"
-                >
-                  <div class="d-inline-flex">
-                    <img
-                      src="https://github.com/mdo.png"
-                      alt="mdo"
-                      width="32"
-                      height="32"
-                      class="rounded-circle me-2"
-                    />
-                    <h2 class="fs-5">mariusrundereim</h2>
-                  </div>
-                  <div>
-                    <i class="bi bi-heart ps-2 pe-2"></i>
-                  </div>
-                </div>
-
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Incidunt ullam adipisci quidem.
-                </p>
-                <div class="d-inline-flex">
-                  <p class="pe-2 fw-medium">#food</p>
-                  <p class="pe-2 fw-medium">#avokado</p>
-                  <p class="pe-2 fw-medium">#green</p>
-                </div>
-                <div class="d-flex m-0">
-                  <button
-                    type="button"
-                    class="btn btn-secondary me-2 flex-fill"
-                  >
-                    Comment
-                  </button>
-                </div>
-              </div>
-            </div>
-            <!-- Example post 2-->
-            <div class="border border-dark border-opacity-25 rounded mb-4">
-              <div class="col ratio ratio-1x1 bg-dark rounded-top"></div>
-              <div class="col bg-white p-2">
-                <div class="d-inline-flex">
-                  <img
-                    src="https://github.com/mdo.png"
-                    alt="mdo"
-                    width="32"
-                    height="32"
-                    class="rounded-circle me-2"
-                  />
-                  <h2 class="fs-5">pernilledall</h2>
-                </div>
-
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Incidunt ullam adipisci quidem. Lorem ipsum dolor sit amet
-                  consectetur adipisicing elit.
-                </p>
-                <div class="d-inline-flex">
-                  <p class="pe-2 fw-medium">#travel</p>
-                  <p class="pe-2 fw-medium">#chill</p>
-                  <p class="pe-2 fw-medium">#cocktails</p>
-                </div>
-              </div>
-            </div>
-            <!-- Example post 3-->
-            <div class="border border-dark border-opacity-25 rounded mb-4">
-              <div class="col ratio ratio-1x1 bg-dark rounded-top"></div>
-              <div class="col bg-white p-2">
-                <div class="d-inline-flex">
-                  <img
-                    src="https://github.com/mdo.png"
-                    alt="mdo"
-                    width="32"
-                    height="32"
-                    class="rounded-circle me-2"
-                  />
-                  <h2 class="fs-5">stinenygren</h2>
-                </div>
-
-                <p>Lorem ipsum dolor sit amet.</p>
-                <div class="d-inline-flex">
-                  <p class="pe-2 fw-medium">#coffee</p>
-                  <p class="pe-2 fw-medium">#mug</p>
-                  <p class="pe-2 fw-medium">#morningroutine</p>
-                </div>
-              </div>
-            </div>
-            <!-- Example post 4-->
-            <div class="border border-dark border-opacity-25 rounded mb-4">
-              <div class="col ratio ratio-1x1 bg-dark rounded-top"></div>
-              <div class="col bg-white p-2">
-                <div class="d-inline-flex">
-                  <img
-                    src="https://github.com/mdo.png"
-                    alt="mdo"
-                    width="32"
-                    height="32"
-                    class="rounded-circle me-2"
-                  />
-                  <h2 class="fs-5">alexdalene</h2>
-                </div>
-
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Incidunt ullam adipisci quidem. Lorem, ipsum dolor sit amet
-                  consectetur adipisicing elit. Quidem, nobis.
-                </p>
-                <div class="d-inline-flex">
-                  <p class="pe-2 fw-medium">#food</p>
-                  <p class="pe-2 fw-medium">#avokado</p>
-                  <p class="pe-2 fw-medium">#green</p>
-                </div>
-              </div>
-            </div>
+            <section id="feeds-all-posts"></section>
           </div>
-          <div class="d-none d-sm-block w-100 ps-5">
-            <h2 class="mb-2 fs-4">Followers</h2>
-
-            <div
-              class="list-group-item list-group-item-action d-flex py-2 gap-3"
-            >
-              <img
-                src="https://github.com/twbs.png"
-                alt="twbs"
-                width="32"
-                height="32"
-                class="rounded-circle flex-shrink-0"
-              />
-              <div class="d-flex gap-2 w-100 justify-content-between">
-                <div>
-                  <h6 class="mb-0">mariusr</h6>
-                  <p class="m-0">mariusrundereim</p>
-                </div>
-                <button type="button" class="btn btn-outline-secondary">
-                  Follow
-                </button>
-              </div>
+          <section>
+            <div class="d-none d-sm-block w-100 ps-5" id="following-container">
+              <h2 class="mb-2 fs-4">Following</h2>
             </div>
-            <a
-              href="#"
-              class="list-group-item list-group-item-action d-flex py-2 gap-3"
-              aria-current="true"
-            >
-              <img
-                src="https://github.com/twbs.png"
-                alt="twbs"
-                width="32"
-                height="32"
-                class="rounded-circle flex-shrink-0"
-              />
-              <div class="d-flex gap-2 w-100 justify-content-between">
-                <div>
-                  <h6 class="mb-0">mariusr</h6>
-                  <p class="m-0">mariusrundereim</p>
-                </div>
-                <button type="button" class="btn btn-outline-secondary">
-                  Follow
-                </button>
-              </div>
-            </a>
-            <a
-              href="#"
-              class="list-group-item list-group-item-action d-flex py-2 gap-3"
-              aria-current="true"
-            >
-              <img
-                src="https://github.com/twbs.png"
-                alt="twbs"
-                width="32"
-                height="32"
-                class="rounded-circle flex-shrink-0"
-              />
-              <div class="d-flex gap-2 w-100 justify-content-between">
-                <div>
-                  <h6 class="mb-0">mariusr</h6>
-                  <p class="m-0">mariusrundereim</p>
-                </div>
-                <button type="button" class="btn btn-secondary">
-                  Unfollow
-                </button>
-              </div>
-            </a>
-          </div>
+            <div class="d-none d-sm-block w-100 ps-5" id="follower-container">
+              <h2 class="mb-2 fs-4">Followers</h2>
+            </div>
+          </section>
         </section>
       </main>
     </div>

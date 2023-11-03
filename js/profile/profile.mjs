@@ -1,0 +1,227 @@
+import { baseURL } from "../env/env.mjs";
+import {
+  jwt,
+  userName,
+  defaultAvatarURL,
+  avatarUrlValue,
+  changeAvatarBtn,
+  profileFollowing,
+  profileFollowers,
+  profilePosts,
+  otherUserName,
+  editProfileBtn,
+  followUser,
+  unfollowUser,
+} from "../src/utils/domElements.mjs";
+import { followAction } from "./follow-unfollow.mjs";
+
+async function getFollowing() {
+  try {
+    const response = await fetch(
+      `${baseURL}/profiles/${otherUserName}?_followers=true&_following=true`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `${jwt}`,
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Failed to get posts. Status: " + response.status);
+    }
+
+    const result = await response.json();
+
+    const following = result.following;
+    const followers = result.followers;
+
+    console.log(followers);
+    console.log(followers.length);
+
+    if (followers.length === 0) {
+      followUser.classList.remove("d-none");
+    }
+
+    followers.forEach((follower) => {
+      console.log(follower);
+      console.log(follower.name);
+      let followerName = follower.name;
+      if (followerName.includes(userName)) {
+        console.log("contains username");
+
+        unfollowUser.classList.remove("d-none");
+      } else {
+        console.log("not following");
+        console.log("userName:", userName);
+        console.log("followerName:", followerName);
+        followUser.classList.remove("d-none");
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const ref = window.location.href;
+const userUrl = "http://127.0.0.1:5501/profile/index.html?user=";
+
+let currentUserName = userName;
+
+if (ref.startsWith(userUrl)) {
+  followAction();
+  console.log("is other user");
+  editProfileBtn.classList.add("d-none");
+  getFollowing();
+
+  currentUserName = otherUserName;
+}
+
+export async function getProfile(userName) {
+  try {
+    let options = {
+      headers: {
+        Authorization: `${jwt}`,
+      },
+    };
+    const response = await fetch(`${baseURL}/profiles/${userName}`, options);
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch profile data: ${response.status}`);
+    }
+
+    const result = await response.json();
+    ProfileCount(result);
+
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+function displayAvatar(userName) {
+  const userAvatar = document.querySelector("#userAvatar");
+  userAvatar.src = userName.avatar || defaultAvatarURL;
+}
+
+function displayProfileHeader(userName) {
+  const userTitle = document.querySelector("#usernameTitle");
+  userTitle.textContent = userName;
+}
+
+function ProfileCount(result) {
+  const profileNumberFollower = result._count.followers;
+  const profileNumberFollowing = result._count.following;
+  const profileNumberPosts = result._count.posts;
+
+  profileFollowers.textContent = profileNumberFollower;
+  profileFollowing.textContent = profileNumberFollowing;
+  profilePosts.textContent = profileNumberPosts;
+}
+
+async function displayProfile(userName) {
+  try {
+    const profileData = await getProfile(userName);
+    displayProfileHeader(userName);
+    displayAvatar(profileData);
+  } catch (error) {
+    console.error("Error display profile:", error);
+  }
+}
+displayProfile(currentUserName);
+
+export async function getProfilePosts(userName) {
+  try {
+    let options = {
+      headers: {
+        Authorization: `${jwt}`,
+      },
+    };
+    const result = await fetch(
+      `${baseURL}/profiles/${userName}/posts`,
+      options
+    );
+
+    if (!result.ok) {
+      throw new Error(`Failed to fetch profile posts data: ${result.status}`);
+    }
+
+    const data = await result.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching profile posts:", error);
+    throw error;
+  }
+}
+//getProfilePosts(currentUserName);
+
+function createProfilePosts(data) {
+  const profilePosts = document.querySelector("#profilePosts");
+
+  data.forEach((post) => {
+    const profilePost = document.createElement("a");
+    profilePost.setAttribute("href", "#");
+    profilePost.classList.add("col", "row");
+
+    const profilePostImage = document.createElement("img");
+    profilePostImage.classList.add(
+      "border",
+      "ratio",
+      "ratio-1x1",
+      "object-fit-cover"
+    );
+
+    profilePostImage.src = post.media;
+
+    profilePost.appendChild(profilePostImage);
+    profilePosts.appendChild(profilePost);
+  });
+}
+
+async function displayProfilePosts(userName) {
+  try {
+    const data = await getProfilePosts(userName);
+    createProfilePosts(data);
+  } catch (error) {
+    console.error("Error fetching and display profile", error);
+  }
+}
+displayProfilePosts(currentUserName);
+
+changeAvatarBtn.addEventListener("click", async () => {
+  const newAvatarUrl = avatarUrlValue.value;
+  try {
+    const result = await changeProfileAvatar(userName, newAvatarUrl);
+    console.log("Avatar changed successfully:", result);
+    displayAvatar(result);
+  } catch (error) {
+    console.error("Error changing avatar:", error);
+  }
+});
+
+async function changeProfileAvatar(userName, newAvatarUrl) {
+  try {
+    const options = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${jwt}`,
+      },
+      body: JSON.stringify({ avatar: newAvatarUrl }),
+    };
+
+    const response = await fetch(
+      `${baseURL}/profiles/${userName}/media`,
+      options
+    );
+
+    if (!response.ok) {
+      throw new Error(`Failed to change avatar: ${response.status}`);
+    }
+
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error("Error changing avatar:", error);
+    throw error;
+  }
+}

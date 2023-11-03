@@ -9,113 +9,104 @@
       defer
       src="./../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
     ></script>
+    <script type="module" src="../js/script.mjs"></script>
+    <script type="module" src="../js/profile/profile.mjs"></script>
   </head>
   <body class="d-flex justify-content-between flex-column vh-100">
     <div>
-      <header class="sticky-top bg-white shadow-sm p-2">
-        <div class="container">
-          <div class="d-flex justify-content-between gap-2 flex-wrap">
-            <div class="d-flex">
-              <a
-                href="/feed/index.html"
-                class="d-flex align-items-center link-body-emphasis text-decoration-none me-3"
-              >
-                <h2>Twist</h2>
-              </a>
-
-              <nav class="nav d-none d-sm-block">
-                <ul
-                  class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
-                >
-                  <li class="nav-item">
-                    <a
-                      href="/feed/index.html"
-                      class="nav-link px-2 link-secondary"
-                      >Feed</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a
-                      href="/profile/index.html"
-                      class="nav-link px-2 link-primary active"
-                      >Profile</a
-                    >
-                  </li>
-                </ul>
-              </nav>
-            </div>
-
-            <div class="d-flex flex-wrap gap-2 justify-content-between">
-              <form
-                class="col-8 col-lg-auto mb-3 mb-lg-0 me-lg-3"
-                role="search"
-              >
-                <input
-                  type="search"
-                  class="form-control"
-                  placeholder="Search..."
-                  aria-label="Search"
-                />
-              </form>
-
-              <div class="dropdown text-end">
-                <a
-                  href="#"
-                  class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <img
-                    src="https://github.com/mdo.png"
-                    alt="mdo"
-                    width="32"
-                    height="32"
-                    class="rounded-circle"
-                  />
-                </a>
-                <ul class="dropdown-menu text-small">
-                  <li>
-                    <a class="dropdown-item" href="/feed/index.html">Feed</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="/profile/index.html"
-                      >Profile</a
-                    >
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">Settings</a>
-                  </li>
-                  <li><hr class="dropdown-divider" /></li>
-                  <li>
-                    <a class="dropdown-item" href="/index.html">Sign out</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
-
       <main class="container mt-2">
         <section
           class="d-flex flex-column align-content-center justify-content-center"
         >
           <div
-            class="mb-5 mb-lg-5 mx-auto d-flex flex-column align-content-center justify-content-center"
+            class="mb-5 mb-lg-5 mx-auto d-flex flex-column align-content-center justify-content-center align-items-center"
           >
             <img
-              src="/src/img/dummy_img_02.png"
+              src="#"
               alt="mdo"
               width="92"
               height="92"
               class="rounded-circle"
+              id="userAvatar"
             />
-            <h2 class="text-center">username</h2>
+            <h2 class="text-center" id="usernameTitle">username</h2>
             <div>
-              <button type="button" class="btn btn-primary mt-5">Follow</button>
-              <button type="button" class="btn btn-primary mt-5">
-                Edit profile
+              <button
+                type="button"
+                class="btn btn-primary mt-5 d-none"
+                id="followUser"
+              >
+                Follow
               </button>
+              <button
+                type="button"
+                class="btn btn-primary mt-5 d-none"
+                id="unfollowUser"
+              >
+                UnFollow
+              </button>
+
+              <!-- Button trigger modal -->
+              <button
+                type="button"
+                class="btn btn-primary w-100 text-center"
+                data-bs-toggle="modal"
+                data-bs-target="#editProfileModal"
+                id="editProfileBtn"
+              >
+                <h3 class="fs-6">Edit profile</h3>
+              </button>
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="editProfileModal"
+                tabindex="-1"
+                aria-labelledby="editProfileModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h3 class="fs-5">Edit profile</h3>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="d-flex flex-column">
+                        <label for="upload" class="mb-2 fw-medium"
+                          >Change avatar</label
+                        >
+                        <input
+                          type="text"
+                          id="changeAvatarValue"
+                          placeholder="Insert URL"
+                        />
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Close
+                      </button>
+
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        id="changeAvatarBtn"
+                      >
+                        Send
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <!--Followers Panel-->
@@ -124,15 +115,15 @@
           >
             <div class="text-center p-2 border-end flex-fill">
               <h3 class="fs-5">Following</h3>
-              <h4>3</h4>
+              <h4 id="profileCountFollowing">0</h4>
             </div>
             <div class="text-center p-2 flex-fill">
               <h3 class="fs-5">Followers</h3>
-              <h4>6</h4>
+              <h4 id="profileCountFollowers">0</h4>
             </div>
             <div class="text-center p-2 border-start flex-fill">
               <h3 class="fs-5">Posts</h3>
-              <h4>4</h4>
+              <h4 id="profileCountPosts">0</h4>
             </div>
           </div>
         </section>
@@ -145,11 +136,7 @@
             <p>Edit</p>
           </div>
           <div class="container">
-            <div class="row gap-2">
-              <div class="col ratio ratio-1x1 bg-dark"></div>
-              <div class="col ratio ratio-1x1 bg-dark"></div>
-              <div class="col ratio ratio-1x1 bg-dark"></div>
-            </div>
+            <div class="row row-cols-3" id="profilePosts"></div>
           </div>
         </section>
       </main>
